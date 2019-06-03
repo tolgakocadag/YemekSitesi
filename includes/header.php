@@ -8,7 +8,7 @@
 	<!-- Logo / Mobile Menu -->
 	<div class="three columns">
 		<div id="logo">
-			<h1><a href="index-2.html"><img src="images/logo.png" alt="Chow" /></a></h1>
+			<h1><a href="index.php"><img src="images/logo.png" alt="Chow" /></a></h1>
 		</div>
 	</div>
 
