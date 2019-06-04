@@ -27,6 +27,13 @@ function getCategory(){
   }
 }
 
+//Tarif eklerken kategoride +1 yapma
+function addOne($catURL){
+  $query = $GLOBALS['db']->prepare("UPDATE categories SET category_COUNT = category_COUNT+1 WHERE category_URL = '{$catURL}'");
+  $update = $query->execute(array());
+  $update=null;
+}
+
 //tarif düzenlerken kategori seçme
 function getCategoryurl($category){
   $getCategory=getDB('categories');

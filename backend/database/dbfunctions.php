@@ -125,6 +125,7 @@ function RecideAdd($tableName,$title,$ingredients,$directions,$explanation,$cook
   $page=fopen('../tarifler/'.$categoryId.'/'.$submit.'-'.$value.'/'.$submit.'.php',"w");
   fwrite($page,$text);
   fclose($page);
+  addOne($categoryId);
   header("location: /YemekSitesi/admin/recides.php");
 }
 
@@ -134,5 +135,16 @@ function RecideDelete($tableName,$recidesId) {
   $delete = $query->execute(array($recidesId));
   $delete=null;
   header("location: /YemekSitesi/admin/recides_list.php");
+}
+
+//META İŞLEMLERİ
+//****************************************************************************
+
+//Meta düzenleme
+function metaEdit($content,$id){
+  $query = $GLOBALS['db']->prepare("UPDATE metatags SET metatag_CONTENT = ? WHERE metatag_ID = ?");
+  $update = $query->execute(array($content,$id));
+  $update=null;
+  header("location: /YemekSitesi/admin/metaTags.php");
 }
  ?>

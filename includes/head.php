@@ -13,11 +13,22 @@
 <!-- Basic Page Needs
 ================================================== -->
 <meta charset="utf-8">
-<title>Chow</title>
+<title>YEMEK SİTESİ</title>
 
 <!-- Mobile Specific Metas
 ================================================== -->
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<!-- Meta Tags -->
+
+<?php
+$sql_list=getDB('metatags');
+foreach ($sql_list as $key => $value) {
+  $metatag_name=$value['metatag_NAME'];
+  $metatag_content=$value['metatag_CONTENT'];
+  echo "<meta name='{$metatag_name}' content='{$metatag_content}'>";
+}
+ ?>
 
 <!-- CSS
 ================================================== -->
