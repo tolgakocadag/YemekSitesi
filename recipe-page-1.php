@@ -1,30 +1,4 @@
-<!DOCTYPE html>
-<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
-
-<!-- Mirrored from www.vasterad.com/themes/chow/recipe-page-1.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 03 Jun 2019 15:15:40 GMT -->
-<head>
-
-<!-- Basic Page Needs
-================================================== -->
-<meta charset="utf-8">
-<title>Chow</title>
-
-<!-- Mobile Specific Metas
-================================================== -->
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-<!-- CSS
-================================================== -->
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/colors/green.css" id="colors">
-
-<!--[if lt IE 9]>
-	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]-->
-
-</head>
-
+<?php require "includes/head.php"; ?>
 <body>
 
 <!-- Wrapper -->
@@ -33,67 +7,7 @@
 
 <!-- Header
 ================================================== -->
-<header id="header">
-
-<!-- Container -->
-<div class="container">
-
-	<!-- Logo / Mobile Menu -->
-	<div class="three columns">
-		<div id="logo">
-			<h1><a href="index-2.html"><img src="images/logo.png" alt="Chow" /></a></h1>
-		</div>
-	</div>
-
-
-<!-- Navigation
-================================================== -->
-<div class="thirteen columns navigation">
-
-	<nav id="navigation" class="menu nav-collapse">
-		<ul>
-			<li><a href="index-2.html">Home</a></li>
-
-			<li><a href="#">Demos</a>
-				<ul>
-					<li><a href="index-2.html">Grid Homepage</a></li>
-					<li><a href="index-3.html">List Homepage</a></li>
-					<li><a href="index-4.html">Boxed Version</a></li>
-				</ul>
-			</li>
-
-			<li><a href="#" id="current">Recipes</a>
-				<ul>
-					<li><a href="browse-recipes.html">Browse Recipes</a></li>
-					<li><a href="recipe-page-1.html">Recipe Page #1</a></li>
-					<li><a href="recipe-page-2.html">Recipe Page #2</a></li>
-				</ul>
-			</li>
-
-			<li><a href="#">Pages</a>
-				<ul>
-					<li><a href="shortcodes.html">Shortcodes</a></li>
-					<li><a href="typography.html">Typography</a></li>
-					<li><a href="contact.html">Contact</a></li>
-				</ul>
-			</li>
-
-			<li><a href="#">Shop</a>
-				<ul>
-					<li><a href="shop.html">Shop</a></li>
-					<li><a href="product-page.html">Product Page</a></li>
-				</ul>
-			</li>
-
-			<li><a href="submit-recipe.html">Submit Recipe</a></li>
-		</ul>
-	</nav>
-
-</div>
-
-</div>
-<!-- Container / End -->
-</header>
+<?php require "includes/header.php"; ?>
 
 
 <!-- Recipe Background -->
@@ -121,7 +35,7 @@
 				<span><a href="#reviews">(4 reviews)</a></span>
 			</div>
 		</section>
-		
+
 
 		<!-- Slider -->
 		<div class="recipeSlider rsDefault">
@@ -154,46 +68,6 @@
 				<input id="check-1" type="checkbox" name="check" value="check-1">
 				<label itemprop="ingredients" for="check-1">2 pounds cubed beef stew meat</label>
 			</li>
-
-			<li>
-				<input id="check-2" type="checkbox" name="check" value="check-2">
-				<label itemprop="ingredients" for="check-2">3 tablespoons vegetable oil</label>
-			</li>
-
-			<li>
-				<input id="check-3" type="checkbox" name="check" value="check-3">
-				<label itemprop="ingredients" for="check-3">4 cubes beef bouillon, crumbled</label>
-			</li>
-
-			<li>
-				<input id="check-4" type="checkbox" name="check" value="check-4">
-				<label itemprop="ingredients" for="check-4">1 large onion, chopped</label>
-			</li>
-
-			<li>
-				<input id="check-5" type="checkbox" name="check" value="check-5">
-				<label itemprop="ingredients" for="check-5">1 teaspoon dried rosemary</label>
-			</li>
-
-			<li>
-				<input id="check-6" type="checkbox" name="check" value="check-6">
-				<label itemprop="ingredients" for="check-6">1/2 teaspoon ground black pepper</label>
-			</li>	
-
-			<li>
-				<input id="check-7" type="checkbox" name="check" value="check-7">
-				<label itemprop="ingredients" for="check-7">3 large potatoes, peeled and cubed </label>
-			</li>	
-
-			<li>
-				<input id="check-8" type="checkbox" name="check" value="check-8">
-				<label itemprop="ingredients" for="check-8">4 carrots, cut into 1 inch pieces</label>
-			</li>	
-
-			<li>
-				<input id="check-9" type="checkbox" name="check" value="check-9">
-				<label itemprop="ingredients" for="check-9">4 stalks celery, cut into 1 inch pieces</label>
-			</li>										
 		</ul>
 
 
@@ -201,9 +75,6 @@
 		<h3>Directions</h3>
 		<ol class="directions" itemprop="recipeInstructions">
 			<li >In a Dutch oven, heat oil over medium heat until hot, but not smoking. Pat the meat dry with paper towels and brown in batches, transferring the meat with a slotted spoon to a bowl as they are done.</li>
-			<li>In the fat remaining in the pot, cook the onions until softened, about 5 minutes. </li>
-			<li>Return meat to the pot with any juices in the bowl and add the tomatoes with juice, chiles, beer, beef broth, oregano, cumin, and Worcestershire sauce. Season with salt and pepper to taste.</li>
-			<li>Bring to a boil and reduce heat. Simmer, partially covered, for 2 1/2 hours or until meat is tender.</li>
 		</ol>
 
 
@@ -218,7 +89,7 @@
 		</ul>
 		<div class="clearfix"></div>
 
-		
+
 		<!-- Meta -->
 <!--  		<div class="post-meta">
 			By <a href="#" itemprop="author">Sandra Fortin</a>, on
@@ -250,7 +121,7 @@
 				<!-- Content -->
 				<div class="recipe-box-content">
 					<h3><a href="#">Mexican Grilled Corn Recipe</a></h3>
-					
+
 					<div class="rating five-stars">
 						<div class="star-rating"></div>
 						<div class="star-bg"></div>
@@ -273,11 +144,11 @@
 						<div class="hover-icon">View Recipe</div>
 					</a>
 				</div>
-				
+
 				<!-- Content -->
 				<div class="recipe-box-content">
 					<h3><a href="#">Roast Chicken With Lemon Gravy</a></h3>
-					
+
 					<div class="rating five-stars">
 						<div class="star-rating"></div>
 						<div class="star-bg"></div>
@@ -300,11 +171,11 @@
 						<div class="hover-icon">View Recipe</div>
 					</a>
 				</div>
-				
+
 				<!-- Content -->
 				<div class="recipe-box-content">
 					<h3><a href="#">Thai Yellow Curry Chicken</a></h3>
-					
+
 					<div class="rating five-stars">
 						<div class="star-rating"></div>
 						<div class="star-bg"></div>
@@ -325,7 +196,7 @@
 		<!-- Comments
 		================================================== -->
 		<h3 class="headline">Reviews <span class="comments-amount">(4)</span></h3><span class="line"></span><div class="clearfix"></div>
-		
+
 			<!-- Reviews -->
 			<section class="comments" id="reviews">
 
@@ -397,7 +268,7 @@
 		================================================== -->
 
 		<h3 class="headline">Add Review</h3><span class="line margin-bottom-35"></span><div class="clearfix"></div>
-		
+
 		<!-- Add Comment Form -->
 		<form id="add-review" class="add-comment">
 			<fieldset>
@@ -406,7 +277,7 @@
 					<label>Name:</label>
 					<input type="text" value=""/>
 				</div>
-					
+
 				<div>
 					<label>Email: <span>*</span></label>
 					<input type="text" value=""/>
@@ -473,14 +344,14 @@
 		<h4 class="headline">Popular Recipes</h4>
 		<span class="line margin-bottom-30"></span>
 		<div class="clearfix"></div>
-		
+
 		<!-- Recipe #1 -->
 		<a href="#" class="featured-recipe">
 			<img src="images/featuredRecipe-01.jpg" alt="">
 
 			<div class="featured-recipe-content">
 				<h4>Choclate Cake With Green Tea Cream</h4>
-			
+
 				<div class="rating five-stars">
 					<div class="star-rating"></div>
 					<div class="star-bg"></div>
@@ -495,7 +366,7 @@
 
 			<div class="featured-recipe-content">
 				<h4>Mexican Grilled Corn Recipe</h4>
-			
+
 				<div class="rating five-stars">
 					<div class="star-rating"></div>
 					<div class="star-bg"></div>
@@ -510,7 +381,7 @@
 
 			<div class="featured-recipe-content">
 				<h4>Pollo Borracho With Homemade Tortillas</h4>
-			
+
 				<div class="rating five-stars">
 					<div class="star-rating"></div>
 					<div class="star-bg"></div>
@@ -528,7 +399,7 @@
 		<h4 class="headline">Share</h4>
 		<span class="line margin-bottom-30"></span>
 		<div class="clearfix"></div>
-		
+
 		<ul class="share-buttons">
 			<li class="facebook-share">
 				<a href="#">
@@ -657,53 +528,7 @@
 
 <!-- Java Script
 ================================================== -->
-<script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="scripts/jquery-1.11.0.min.js"></script>
-<script src="scripts/jquery-migrate-1.2.1.min.js"></script>
-<script src="scripts/jquery.superfish.js"></script>
-<script src="scripts/jquery.royalslider.min.js"></script>
-<script src="scripts/responsive-nav.js"></script>
-<script src="scripts/hoverIntent.js"></script>
-<script src="scripts/isotope.pkgd.min.js"></script>
-<script src="scripts/chosen.jquery.min.js"></script>
-<script src="scripts/jquery.tooltips.min.js"></script>
-<script src="scripts/jquery.magnific-popup.min.js"></script>
-<script src="scripts/jquery.pricefilter.js"></script>
-<script src="scripts/custom.js"></script>
-
-
-<!-- Style Switcher
-================================================== -->
-<script src="scripts/switcher.js"></script>
-
-<div id="style-switcher">
-	<h2>Style Switcher <a href="#"></a></h2>
-	
-	<div>
-		<h3>Predefined Colors</h3>
-		<ul class="colors" id="color1">
-			<li><a href="#" class="green" title="Green"></a></li>
-			<li><a href="#" class="blue" title="Blue"></a></li>
-			<li><a href="#" class="orange" title="Orange"></a></li>
-			<li><a href="#" class="navy" title="Navy"></a></li>
-			<li><a href="#" class="yellow" title="Yellow"></a></li>
-			<li><a href="#" class="peach" title="Peach"></a></li>
-			<li><a href="#" class="beige" title="Beige"></a></li>
-			<li><a href="#" class="purple" title="Purple"></a></li>
-			<li><a href="#" class="celadon" title="Celadon"></a></li>
-			<li><a href="#" class="pink" title="Pink"></a></li>
-			<li><a href="#" class="red" title="Red"></a></li>
-			<li><a href="#" class="brown" title="Brown"></a></li>
-			<li><a href="#" class="cherry" title="Cherry"></a></li>
-			<li><a href="#" class="cyan" title="Cyan"></a></li>
-			<li><a href="#" class="gray" title="Gray"></a></li>
-			<li><a href="#" class="darkcol" title="Dark"></a></li>
-		</ul>
-		
-	</div>
-	
-	<div id="reset"><a href="#" class="button color">Reset</a></div>
-		
-</div>
+<?php require "includes/foot.php"; ?>
 
 
 </body>

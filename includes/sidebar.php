@@ -21,8 +21,14 @@
 		<div class="clearfix"></div>
 
 		<ul class="categories">
-
-			<li><a href="#">Lunch <span>(2)</span></a></li>
+			<?php
+						$category_list=getDB('categories');
+						foreach ($category_list as $key => $value) {
+							$categoryName=$value['category_NAME'];
+							$categoryCount=$value['category_COUNT'];
+							echo '<li><a href="#">'.$categoryName.' <span>('.$categoryCount.')</span></a></li>';
+						}
+			 ?>
 		</ul>
 	</div>
 
