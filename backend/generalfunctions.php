@@ -21,9 +21,73 @@ function multiexplode ($delimiters,$string) {
 function getCategory(){
   $getCategory=getDB('categories');
   foreach ($getCategory as $key => $value) {
-    echo "<option value='{$value['category_NAME']}'>
-    {$value['category_NAME']}
+    echo "<option value='{$value['category_URL']}'>
+    {$value['category_URL']}
     </option>";
   }
+}
+
+//tarif düzenlerken kategori seçme
+function getCategoryurl($category){
+  $getCategory=getDB('categories');
+  foreach ($getCategory as $key => $value) {
+    if($category==$value['category_URL'])
+    {
+      echo "<option selected value='{$value['category_URL']}'>
+      {$value['category_URL']}
+      </option>";
+      continue;
+    }
+    echo "<option value='{$value['category_URL']}'>
+    {$value['category_URL']}
+    </option>";
+  }
+}
+
+//recides edit $serves
+function editrecidesserves($serves){
+  if($serves=='1 Kişilik'){echo '<option selected value="1 Kişilik">1 Kişilik</option><option value="2 Kişilik">2 Kişilik</option><option value="3 Kişilik">3 Kişilik</option><option value="4 Kişilik">4 Kişilik</option><option value="5 Kişilik">5 Kişilik</option><option value="6+ Kişilik">6+ Kişilik</option>';}
+    elseif($serves=='2 Kişilik'){echo '<option value="1 Kişilik">1 Kişilik</option><option selected value="2 Kişilik">2 Kişilik</option><option value="3 Kişilik">3 Kişilik</option><option value="4 Kişilik">4 Kişilik</option><option value="5 Kişilik">5 Kişilik</option><option value="6+ Kişilik">6+ Kişilik</option>';}
+      elseif($serves=='3 Kişilik'){echo '<option value="1 Kişilik">1 Kişilik</option><option value="2 Kişilik">2 Kişilik</option><option selected value="3 Kişilik">3 Kişilik</option><option value="4 Kişilik">4 Kişilik</option><option value="5 Kişilik">5 Kişilik</option><option value="6+ Kişilik">6+ Kişilik</option>';}
+        elseif($serves=='4 Kişilik'){echo '<option value="1 Kişilik">1 Kişilik</option><option value="2 Kişilik">2 Kişilik</option><option value="3 Kişilik">3 Kişilik</option><option selected value="4 Kişilik">4 Kişilik</option><option value="5 Kişilik">5 Kişilik</option><option value="6+ Kişilik">6+ Kişilik</option>';}
+          elseif($serves=='5 Kişilik'){echo '<option value="1 Kişilik">1 Kişilik</option><option value="2 Kişilik">2 Kişilik</option><option value="3 Kişilik">3 Kişilik</option><option value="4 Kişilik">4 Kişilik</option><option selected value="5 Kişilik">5 Kişilik</option><option value="6+ Kişilik">6+ Kişilik</option>';}
+            else{echo '<option value="1 Kişilik">1 Kişilik</option><option value="2 Kişilik">2 Kişilik</option><option value="3 Kişilik">3 Kişilik</option><option value="4 Kişilik">4 Kişilik</option><option value="5 Kişilik">5 Kişilik</option><option selected value="6+ Kişilik">6+ Kişilik</option>';}
+}
+
+//malzeme listeleme
+function getIngredients($ingredients,$title)
+{
+  $checkcount=1;
+  echo '<h3>'.$title.' İçin Gereken Malzemeler</h3>
+  <ul class="ingredients">';
+  $explodeingredients=explode('+',$ingredients);
+  foreach ($explodeingredients as $key => $value) {
+    echo '<li>
+            <input id="check-'.$checkcount.'" type="checkbox" name="check" value="check-'.$checkcount.'">
+            <label itemprop="ingredients" for="check-'.$checkcount.'">'.$explodeingredients[$key].'</label>
+          </li>';
+    $checkcount++;
+  }
+  echo '</ul>';
+}
+
+//talimatları listeleme
+function getDirections($directions,$title)
+{
+  echo '<h3>'.$title.' Nasıl Yapılır?</h3>
+  <ol class="directions" itemprop="recipeInstructions">';
+  $explodedirections=explode('+',$directions);
+  foreach ($explodedirections as $key => $value) {
+    echo '    <li >'.$explodedirections[$key].'</li>';
+  }
+  echo '</ol>';
+}
+
+//Share kısmının altındaki reklam
+function ads1()
+{
+  echo '<div style="width:auto;height:auto;border:2px solid black">
+   DENEME
+  </div>';
 }
  ?>

@@ -2,6 +2,7 @@
 ob_start();
 require "../backend/database/dbfunctions.php";
 require "../backend/generalfunctions.php";
+require "../backend/createRecidePage.php";
  ?>
 
 <!DOCTYPE html>

@@ -15,83 +15,82 @@
 
         <?php require "includes/topbar.php"; ?>
 
+      <?php
+        if(isset($_GET['editid']))
+        {
+          $recideid=$_GET['editid'];
+          $getList=getDBid($recideid);
+          foreach ($getList as $key => $value) {
+            $title=$value['recides_TITLE'];
+            $ingredients=$value['recides_INGREDIENTS'];
+            $directions=$value['recides_DIRECTIONS'];
+            $explanation=$value['recides_EXPLANATION'];
+            $cooking=$value['recides_COOKING'];
+            $preptime=$value['recides_PREPTIME'];
+            $serves=$value['recides_SERVES'];
+            $frontexplanation=$value['recides_FRONTEXPLANATION'];
+            $description=$value['recides_DESCRIPTION'];
+            $tags=$value['recides_TAGS'];
+            $categoryID=$value['category_ID'];
+
+            print_r($value);
+          }
+        }
+       ?>
 
       <form action="" method="post" enctype="multipart/form-data">
         <div class="row ml-4">
           <div class="form-group col-4">
               <label for="title">Başlık</label>
-              <input   class="form-control" type="text" name="title" placeholder="Başlığı giriniz...">
+              <input   class="form-control" type="text" name="title" placeholder="Başlığı giriniz..." value="<?php echo $title; ?>">
               <hr />
               <label for="ingredients">Malzemeler</label>
-              <textarea class="form-control"   type="textarea" rows="10" name="ingredients" placeholder="Malzemeleri Giriniz..."></textarea>
+              <textarea class="form-control"   type="textarea" rows="10" name="ingredients" placeholder="Malzemeleri Giriniz..."><?php echo $ingredients; ?></textarea>
                 Her malzeme arasında bir adet <b>+</b> işareti koyunuz.
           </div>
           <div class="form-group col-4">
             <label for="directions">Talimatlar</label>
-            <textarea   class="form-control" type="textarea" rows="10" name="directions" placeholder="Talimatları Giriniz..."></textarea>
+            <textarea   class="form-control" type="textarea" rows="10" name="directions" placeholder="Talimatları Giriniz..."><?php echo $directions; ?></textarea>
               Her talimatın arasına bir adet <b>+</b> işareti koyunuz.
             <hr />
             <label for="cooking">Pişirme Süresi</label>
             <div class="row">
-              <div class="form-group col-3">
-                <input   class="form-control" min="0" type="number" name="cookinghours" placeholder="0">
-              </div>
-              <div class="form-group col-1">
-                <label   class="my-2" for="">Saat</label>
-              </div>
-              <div class="form-group col-3  ">
-                <input   class="form-control ml-2" min="0" type="number" name="cookingminutes" placeholder="0">
-              </div>
-              <div class="form-group col-1">
-                <label   class="my-2 ml-1" for="">Dakika</label>
+              <div class="form-group col-6">
+                <input   class="form-control" type="text" value="<?php echo $cooking; ?>" name="cooking">
               </div>
             </div>
           </div>
           <div class="form-group col-4">
             <label for="preptime">Hazırlık Süresi</label>
             <div class="row">
-              <div class="form-group col-3">
-                <input   class="form-control" min="0" type="number" name="preptimehours" placeholder="0">
-              </div>
-              <div class="form-group col-1">
-                <label class="my-2" for="">Saat</label>
-              </div>
-              <div class="form-group col-3  ">
-                <input   class="form-control ml-2" min="0" type="number" name="preptimeminutes" placeholder="0">
-              </div>
-              <div class="form-group col-1">
-                <label   class="my-2 ml-1" for="">Dakika</label>
+              <div class="form-group col-7">
+                <input   class="form-control" type="text" value="<?php echo $preptime; ?>" name="preptime">
               </div>
             </div>
             <hr />
             <label for="serves">Kaç Kişilik</label>
             <select   class="form-control" name="serves" style="width:50%">
-              <option value="1 Kişilik">1 Kişilik</option>
-              <option value="2 Kişilik">2 Kişilik</option>
-              <option value="3 Kişilik">3 Kişilik</option>
-              <option selected value="4 Kişilik">4 Kişilik</option>
-              <option value="5 Kişilik">5 Kişilik</option>
-              <option value="6+ Kişilik">6+ Kişilik</option>
+              <?php editrecidesserves($serves); ?>
             </select>
             <hr />
             <label for="categories">Kategori Seçimi</label>
             <select   class="form-control" name="categories" style="width:50%">
-              <?php getCategory(); ?>
+              <?php getCategoryurl($categoryID); ?>
             </select>
             <hr />
             <label for="title">Description</label>
-            <input   class="form-control col-9" type="text" name="description" placeholder="Description...">
+            <input   class="form-control col-9" type="text" value="<?php echo $description; ?>" name="description" placeholder="Description...">
           </div>
         </div>
         <hr />
         <div class="row ml-4">
           <div class="form-group col-6">
             <label for="">Ekstra Açıklamalar</label>
-            <textarea id="explanation" name="explanation" rows="8" cols="80"></textarea>
+            <textarea id="explanation" name="explanation" rows="8" cols="80"><?php echo htmlspecialchars($explanation,ENT_QUOTES); ?></textarea>
             <hr />
             <div class="form-group col-10">
               <label for="">Tags</label>
-              <textarea class="form-control" id="tags" name="tags" rows="3" cols="80"></textarea>
+              <textarea class="form-control" id="tags" name="tags" rows="3" cols="80"><?php echo $tags; ?></textarea>
             </div>
           </div>
           <div class="form-group col-6">
@@ -113,7 +112,7 @@
             </div>
             <div class="form-group col-10">
               <label for="">Ön Açıklama</label>
-              <textarea class="form-control" id="frontexplanation" name="frontexplanation" rows="3" cols="80"></textarea>
+              <textarea class="form-control" id="frontexplanation" name="frontexplanation" rows="3" cols="80"><?php echo htmlspecialchars($frontexplanation,ENT_QUOTES); ?></textarea>
             </div>
           </div>
         </div>
@@ -181,15 +180,43 @@
         $serves=$_POST['serves'];
         $categories=$_POST['categories'];
         $explanation=$_POST['explanation'];
-        $fileimage1=$_FILES['about_image1']['tmp_name'];
-        $fileimage2=$_FILES['about_image2']['tmp_name'];
-        $fileimage3=$_FILES['about_image3']['tmp_name'];
-        $fileimage4=$_FILES['about_image4']['tmp_name'];
+        $post_image="";
+        if(strlen( $_FILES['about_image1']['tmp_name'])>0)
+        {
+          $value=rand(1,30000);
+          $post_images = $_FILES['about_image1']['tmp_name'];
+          copy($post_images, '../images/recidesimg/' . $value .'_'. $_FILES['about_image1']['name']);
+          $post_image.="../images/recidesimg/{$value}_{$_FILES['about_image1']['name']}";
+          $post_image.=",";
+        }
+        if(strlen( $_FILES['about_image2']['tmp_name'])>0)
+        {
+          $value=rand(1,30000);
+          $post_images = $_FILES['about_image2']['tmp_name'];
+          copy($post_images, '../images/recidesimg/' . $value .'_'. $_FILES['about_image2']['name']);
+          $post_image.="../images/recidesimg/{$value}_{$_FILES['about_image2']['name']}";
+          $post_image.=",";
+        }
+        if(strlen( $_FILES['about_image3']['tmp_name'])>0)
+        {
+          $value=rand(1,30000);
+          $post_images = $_FILES['about_image3']['tmp_name'];
+          copy($post_images, '../images/recidesimg/' . $value .'_'. $_FILES['about_image3']['name']);
+          $post_image.="../images/recidesimg/{$value}_{$_FILES['about_image3']['name']}";
+          $post_image.=",";
+        }
+        if(strlen( $_FILES['about_image4']['tmp_name'])>0)
+        {
+          $value=rand(1,30000);
+          $post_images = $_FILES['about_image4']['tmp_name'];
+          copy($post_images, '../images/recidesimg/' . $value .'_'. $_FILES['about_image4']['name']);
+          $post_image.="../images/recidesimg/{$value}_{$_FILES['about_image4']['name']}";
+          $post_image.=",";
+        }
         $frontexplanation=$_POST['frontexplanation'];
         $description=$_POST['description'];
         $tags=$_POST['tags'];
-        RecideAdd('recides',$title,$ingredients,$directions,$explanation,$cooking,$preptime,$serves,$categories,$frontexplanation,$description,$tags,
-      $fileimage1,$fileimage2,$fileimage3,$fileimage4);
+        RecideAdd('recides',$title,$ingredients,$directions,$explanation,$cooking,$preptime,$serves,$categories,$post_image,$frontexplanation,$description,$tags);
       }
        ?>
 

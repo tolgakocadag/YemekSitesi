@@ -1,27 +1,22 @@
-<?php
-//Yeni tarif sayfası oluşturan fonksiyon
-function createPage($fileurl){
-  $text="";
-  $mark="'";
-  $text.='
+
   <?php
-   require "../../../backend/database/dbfunctions.php";
-   require "../../../backend/generalfunctions.php";
-    $'.'allrecide=getDBURL("'.$fileurl.'");
-    foreach ($'.'allrecide as $'.'key => $'.'value) {
-      $'.'title=$'.'value["recides_TITLE"];
-      $'.'serves=$'.'value["recides_SERVES"];
-      $'.'preptime=$'.'value["recides_PREPTIME"];
-      $'.'cooking=$'.'value["recides_COOKING"];
-      $'.'ingredients=$'.'value["recides_INGREDIENTS"];
-      $'.'directions=$'.'value["recides_DIRECTIONS"];
-      $'.'frontexplanation=$'.'value["recides_FRONTEXPLANATION"];
-      $'.'explanation=$'.'value["recides_EXPLANATION"];
-      $'.'image=$'.'value["recides_IMAGE"];
-      $'.'categoryurl=$'.'value["category_ID"];
+   require "../../backend/database/dbfunctions.php";
+   require "../../backend/generalfunctions.php";
+    $allrecide=getDBURL("deneme-basligi-14626/deneme-basligi");
+    foreach ($allrecide as $key => $value) {
+      $title=$value["recides_TITLE"];
+      $serves=$value["recides_SERVES"];
+      $preptime=$value["recides_PREPTIME"];
+      $cooking=$value["recides_COOKING"];
+      $ingredients=$value["recides_INGREDIENTS"];
+      $directions=$value["recides_DIRECTIONS"];
+      $frontexplanation=$value["recides_FRONTEXPLANATION"];
+      $explanation=$value["recides_EXPLANATION"];
+      $image=$value["recides_IMAGE"];
+      $categoryurl=$value["category_ID"];
     }
   ?>
-  <?php require "../../../includes/singlePage/head.php"; ?>
+  <?php require "../../includes/singlePage/head.php"; ?>
   <body>
 
   <!-- Wrapper -->
@@ -30,12 +25,12 @@ function createPage($fileurl){
 
   <!-- Header
   ================================================== -->
-  <?php require "../../../includes/singlePage/header.php"; ?>
+  <?php require "../../includes/singlePage/header.php"; ?>
 
 
   <!-- Recipe Background -->
   <div class="recipeBackground">
-  	<img src="../../../images/recipeBackground.jpg" alt="" />
+  	<img src="../../images/recipeBackground.jpg" alt="" />
   </div>
 
 
@@ -50,7 +45,7 @@ function createPage($fileurl){
   		<!-- Header -->
   		<section class="recipe-header">
   			<div class="title-alignment">
-  				<h2><?php echo $'.'title;?></h2>
+  				<h2><?php echo $title;?></h2>
   				<div class="rating five-stars">
   					<div class="star-rating"></div>
   					<div class="star-bg"></div>
@@ -61,15 +56,15 @@ function createPage($fileurl){
 
 
   		<!-- Slider -->
-  		<?php require "../../../includes/singlePage/slider.php"; ?>
+  		<?php require "../../includes/singlePage/slider.php"; ?>
 
 
   		<!-- Details -->
   		<section class="recipe-details" itemprop="nutrition">
   			<ul>
-  				<li>Kaç Kişilik: <strong itemprop="recipeYield"><?php echo $'.'serves;?></strong></li>
-  				<li>Hazırlama Süresi: <strong itemprop="prepTime"><?php echo $'.'preptime;?></strong></li>
-  				<li>Pişirme Süresi: <strong itemprop="cookTime"><?php echo $'.'cooking;?></strong></li>
+  				<li>Kaç Kişilik: <strong itemprop="recipeYield"><?php echo $serves;?></strong></li>
+  				<li>Hazırlama Süresi: <strong itemprop="prepTime"><?php echo $preptime;?></strong></li>
+  				<li>Pişirme Süresi: <strong itemprop="cookTime"><?php echo $cooking;?></strong></li>
   			</ul>
   			<a href="#" class="print"><i class="fa fa-print"></i> Print</a>
   			<div class="clearfix"></div>
@@ -77,18 +72,18 @@ function createPage($fileurl){
 
 
   		<!-- Text -->
-  		<p itemprop="description"><?php echo $'.'frontexplanation;?></p>
+  		<p itemprop="description"><?php echo $frontexplanation;?></p>
 
 
   		<!-- Ingredients -->
-  		<?php getIngredients($'.'ingredients,$'.'title); ?>
+  		<?php getIngredients($ingredients,$title); ?>
 
 
   		<!-- Directions -->
-  		<?php getDirections($'.'directions,$'.'title); ?>
+  		<?php getDirections($directions,$title); ?>
 
       <!-- Text -->
-  		<p itemprop="description"><?php echo $'.'explanation;?></p>
+  		<p itemprop="description"><?php echo $explanation;?></p>
 
   		<!-- Share Post -->
   		<ul class="share-post">
@@ -113,12 +108,12 @@ function createPage($fileurl){
 
 
   		<!-- Headline -->
-   		<?php require "../../../includes/singlePage/headline.php"; ?>
+   		<?php require "../../includes/singlePage/headline.php"; ?>
 
 
   		<!-- Comments
   		================================================== -->
-  		<?php require "../../../includes/singlePage/comments.php"; ?>
+  		<?php require "../../includes/singlePage/comments.php"; ?>
 
   	</div>
   	</div>
@@ -129,22 +124,22 @@ function createPage($fileurl){
   <div class="four columns">
 
   	<!-- Search Form -->
-  	<?php require "../../../includes/singlePage/search.php"; ?>
+  	<?php require "../../includes/singlePage/search.php"; ?>
 
 
     <!-- Categories -->
-  	<?php require "../../../includes/singlePage/categories.php"; ?>
+  	<?php require "../../includes/singlePage/categories.php"; ?>
 
 
   	<!-- Popular Recipes -->
-  	<?php require "../../../includes/singlePage/populerrecipes.php"; ?>
+  	<?php require "../../includes/singlePage/populerrecipes.php"; ?>
 
 
   	<!-- Popular Social Recipes -->
-    <?php require "../../../includes/singlePage/populersocialrecipes.php"; ?>
+    <?php require "../../includes/singlePage/populersocialrecipes.php"; ?>
 
     <!-- Ads Post -->
-    <?php require "../../../includes/singlePage/adskutu/ads1.php"; ?>
+    <?php require "../../includes/singlePage/adskutu/ads1.php"; ?>
 
   </div>
 
@@ -159,7 +154,7 @@ function createPage($fileurl){
 
   <!-- Footer
   ================================================== -->
-  <?php require "../../../includes/singlePage/footer.php"; ?>
+  <?php require "../../includes/singlePage/footer.php"; ?>
   <!-- Footer Bottom / End -->
 
   <!-- Back To Top Button -->
@@ -169,14 +164,11 @@ function createPage($fileurl){
 
   <!-- Java Script
   ================================================== -->
-  <?php require "../../../includes/singlePage/foot.php"; ?>
+  <?php require "../../includes/singlePage/foot.php"; ?>
 
 
   </body>
 
   </html>
 
-  ';
-  return $text;
-}
- ?>
+  

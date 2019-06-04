@@ -129,7 +129,7 @@
   <!--Kategori Sil-->
   <?php
   if(isset($_GET["delete"])){
-    CategoryDelete('categories',$_GET["delete"],$categoryURL);
+    CategoryDelete('categories',$_GET["delete"]);
   }
    ?>
 

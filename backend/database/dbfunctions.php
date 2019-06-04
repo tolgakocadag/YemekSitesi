@@ -7,10 +7,27 @@ function getDB($tableName){
   return $getDB;
 }
 
-//Veri Çekme (idli)
-function getDBid($tableName,$submit){
-  echo $submit;
-  $getDB =  $GLOBALS['db']->query("SELECT * FROM $tableName WHERE category_ID=$submit")->fetchAll(PDO::FETCH_ASSOC);
+//singlepage urlye göre listele
+function getDBURL($url){
+  $getDB =  $GLOBALS['db']->query("SELECT * FROM recides WHERE recides_URL='{$url}'")->fetchAll(PDO::FETCH_ASSOC);
+  return $getDB;
+}
+
+//tarif tablosu  idye göre listele
+function getDBid($id){
+  $getDB =  $GLOBALS['db']->query("SELECT * FROM recides WHERE recides_ID='{$id}'")->fetchAll(PDO::FETCH_ASSOC);
+  return $getDB;
+}
+
+//Tarifler tablosu azalan sıralama
+function getDBDESC(){
+  $getDB =  $GLOBALS['db']->query("SELECT * FROM recides ORDER BY recides_HIT DESC LIMIT 4")->fetchAll(PDO::FETCH_ASSOC);
+  return $getDB;
+}
+
+//Hangi kategoride geziliyor ise ona göre rastgele listeleyerek 3 adet tarifi gösterme
+function getDBHowCategory($category){
+  $getDB =  $GLOBALS['db']->query("SELECT * FROM recides WHERE category_ID='{$category}' ORDER BY RAND() LIMIT 3")->fetchAll(PDO::FETCH_ASSOC);
   return $getDB;
 }
 
@@ -47,7 +64,7 @@ function CategoryEdit($tableName,$categoryName,$categoryId,$categoryURL){
 }
 
 //Kategori Silme
-function CategoryDelete($tableName,$categoryId,$categoryURL) {
+function CategoryDelete($tableName,$categoryId) {
   $query = $GLOBALS['db']->prepare("DELETE FROM $tableName WHERE category_ID = ?");
   $delete = $query->execute(array($categoryId));
   $delete=null;
@@ -56,12 +73,66 @@ function CategoryDelete($tableName,$categoryId,$categoryURL) {
 
 //TARİF İŞLEMLERİ
 //**************************************************************************************
-function RecideAdd($tableName,$title,$ingredients,$directions,$explanation,$cooking,$preptime,$serves,$categoryId,$post_image)
+
+//Tarif ekleme
+function RecideAdd($tableName,$title,$ingredients,$directions,$explanation,$cooking,$preptime,$serves,$categoryId,$frontexplanation,$description,$tags,$fileimage1,$fileimage2,$fileimage3,$fileimage4)
 {
-  $query = $GLOBALS['db']->prepare("INSERT INTO $tableName SET recides_TITLE = ? , recides_INGREDIENTS = ? , recides_DIRECTIONS = ? , recides_EXPLANATION = ? ,
-  recides_COOKING = ? , recides_PREPTIME = ? , recides_SERVES = ? , recides_IMAGE = ? , category_ID = ?");
-  $insert = $query->execute(array($title,$ingredients,$directions,$explanation,$cooking,$preptime,$serves,$post_image,$categoryId));
+  $replacetr=replace_tr($title);
+  $explode= multiexplode(array(",","|",'"','.',"{","!","#",">","<","/","*","+","-","=","%","&","*",";","}","[","]","(",")"," ","?"),$replacetr);
+  foreach ($explode as $key => $value) {
+      $submit.=$explode[$key]."-";
+  }
+  $submit=rtrim($submit,"-");
+  $value=rand(1,30000);
+  mkdir('../tarifler/'.$categoryId.'/'.$submit.'-'.$value);
+  touch('../tarifler/'.$categoryId.'/'.$submit.'-'.$value.'/'.$submit.'.php');
+  $image_url="../tarifler/{$categoryId}/{$submit}-{$value}";
+  $post_image="";
+  if(strlen($fileimage1)>0)
+  {
+    $post_images = $fileimage1;
+    copy($post_images, $image_url.'/'. $_FILES['about_image1']['name']);
+    $post_image.="{$image_url}/{$_FILES['about_image1']['name']}";
+    $post_image.=",";
+  }
+  if(strlen($fileimage2)>0)
+  {
+    $post_images = $fileimage2;
+    copy($post_images, $image_url.'/'. $_FILES['about_image2']['name']);
+    $post_image.="{$image_url}/{$_FILES['about_image2']['name']}";
+    $post_image.=",";
+  }
+  if(strlen($fileimage3)>0)
+  {
+    $post_images = $fileimage3;
+    copy($post_images, $image_url.'/'. $_FILES['about_image3']['name']);
+    $post_image.="{$image_url}/{$_FILES['about_image3']['name']}";
+    $post_image.=",";
+  }
+  if(strlen($fileimage4)>0)
+  {
+    $post_images = $fileimage4;
+    copy($post_images, $image_url.'/'. $_FILES['about_image4']['name']);
+    $post_image.="{$image_url}/{$_FILES['about_image4']['name']}";
+    $post_image.=",";
+  }
+  $fileurl=$submit.'-'.$value.'/'.$submit;
+  $query = $GLOBALS['db']->prepare("INSERT INTO $tableName SET recides_TITLE = ? , recides_URL = ? , recides_INGREDIENTS = ? , recides_DIRECTIONS = ? , recides_EXPLANATION = ? ,
+  recides_COOKING = ? , recides_PREPTIME = ? , recides_SERVES = ? , recides_IMAGE = ? , recides_FRONTEXPLANATION = ? , recides_DESCRIPTION = ? , recides_TAGS = ? , category_ID = ?");
+  $insert = $query->execute(array($title,$fileurl,$ingredients,$directions,$explanation,$cooking,$preptime,$serves,$post_image,$frontexplanation,$description,$tags,$categoryId));
   $insert=null;
+  $text=createPage($fileurl);
+  $page=fopen('../tarifler/'.$categoryId.'/'.$submit.'-'.$value.'/'.$submit.'.php',"w");
+  fwrite($page,$text);
+  fclose($page);
   header("location: /YemekSitesi/admin/recides.php");
+}
+
+//Tarif Silme
+function RecideDelete($tableName,$recidesId) {
+  $query = $GLOBALS['db']->prepare("DELETE FROM $tableName WHERE recides_ID = ?");
+  $delete = $query->execute(array($recidesId));
+  $delete=null;
+  header("location: /YemekSitesi/admin/recides_list.php");
 }
  ?>

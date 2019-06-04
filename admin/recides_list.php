@@ -66,14 +66,14 @@
                       <td>{$recidesURL}</td>
                       <td>{$recidesHIT}</td>
                       <td>
-                        <a class='btn btn-primary btn-circle' data-toggle='modal' data-target='#editcategory{$modalnumber}' href='#'><i class='fas fa-edit'></i></a>
-                        <a class='btn btn-danger btn-circle' data-toggle='modal' data-target='#deletecategory{$modalnumber}' href='#'><i class='fas fa-trash'></i></a>
+                        <a class='btn btn-primary btn-circle' href='recides_edit.php?editid={$recidesID}''><i class='fas fa-edit'></i></a>
+                        <a class='btn btn-danger btn-circle' data-toggle='modal' data-target='#deleterecides{$modalnumber}' href='#'><i class='fas fa-trash'></i></a>
                       </td>
                     </tr>";
                     //Kategori Düzenle
-                    require "includes/categories/categoryEdit.php";
+                    //require "includes/recides/recidesEdit.php";
                     //Kategori Sil
-                    require "includes/categories/categoryDelete.php";
+                    require "includes/recides/recidesDelete.php";
                     $modalnumber++;
                   }
                   ?>
@@ -125,16 +125,16 @@
 
         <!--Kategori Düzenle-->
         <?php
-        if(isset($_POST["edit_category"]))
+        if(isset($_POST["edit_recides"]))
         {
-        CategoryEdit("categories",$_POST["categoryName"],$_POST["category_ID"],$_POST["category_URL"]);
+        RecideEdit("recides",$_POST["categoryName"],$_POST["category_ID"],$_POST["category_URL"]);
         }
         ?>
 
         <!--Kategori Sil-->
         <?php
         if(isset($_GET["delete"])){
-        CategoryDelete("categories",$_GET["delete"],$categoryURL);
+        RecideDelete("recides",$_GET["delete"]);
         }
         ?>
 
