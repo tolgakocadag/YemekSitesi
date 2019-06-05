@@ -4,10 +4,7 @@
   ?>
 
 <!DOCTYPE html>
-<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
-
-<!-- Mirrored from www.vasterad.com/themes/chow/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 03 Jun 2019 15:14:55 GMT -->
+<html lang="tr">
 <head>
 
 <!-- Basic Page Needs
@@ -34,6 +31,8 @@ foreach ($sql_list as $key => $value) {
 ================================================== -->
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/colors/green.css" id="colors">
+<!--H2 SİNGLE PAGE FONT-->
+<link href="https://fonts.googleapis.com/css?family=Caveat:700&display=swap" rel="stylesheet">
 
 <!--[if lt IE 9]>
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>

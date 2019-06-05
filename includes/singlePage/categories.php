@@ -9,7 +9,8 @@
           foreach ($category_list as $key => $value) {
             $categoryName=$value['category_NAME'];
             $categoryCount=$value['category_COUNT'];
-            echo '<li><a href="#">'.$categoryName.' <span>('.$categoryCount.')</span></a></li>';
+            $categoryUrl=$value['category_URL'];
+            echo '<li><a href="/YemekSitesi/tarifler?kategori='.$categoryUrl.'">'.$categoryName.' <span>('.$categoryCount.')</span></a></li>';
           }
      ?>
   </ul>

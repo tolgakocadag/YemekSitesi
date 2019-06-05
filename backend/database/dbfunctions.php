@@ -7,9 +7,21 @@ function getDB($tableName){
   return $getDB;
 }
 
+//veri çekme son 9 Tarifler
+function getDBLast(){
+  $getDB =  $GLOBALS['db']->query("SELECT * FROM recides ORDER BY recides_ID DESC LIMIT 9")->fetchAll(PDO::FETCH_ASSOC);
+  return $getDB;
+}
+
 //singlepage urlye göre listele
 function getDBURL($url){
   $getDB =  $GLOBALS['db']->query("SELECT * FROM recides WHERE recides_URL='{$url}'")->fetchAll(PDO::FETCH_ASSOC);
+  return $getDB;
+}
+
+//singlepage urlye göre listele
+function getDBSEARCHRAND($get){
+  $getDB =  $GLOBALS['db']->query("SELECT * FROM recides WHERE category_ID='{$get}' ORDER BY RAND() LIMIT 9")->fetchAll(PDO::FETCH_ASSOC);
   return $getDB;
 }
 
@@ -22,6 +34,12 @@ function getDBid($id){
 //Tarifler tablosu azalan sıralama
 function getDBDESC(){
   $getDB =  $GLOBALS['db']->query("SELECT * FROM recides ORDER BY recides_HIT DESC LIMIT 4")->fetchAll(PDO::FETCH_ASSOC);
+  return $getDB;
+}
+
+//Categoru urlye göre category name çağırma fonksiyonu
+function getCategoryName($catUrl){
+  $getDB =  $GLOBALS['db']->query("SELECT * FROM categories WHERE category_URL = '{$catUrl}'")->fetchAll(PDO::FETCH_ASSOC);
   return $getDB;
 }
 
@@ -69,6 +87,14 @@ function CategoryDelete($tableName,$categoryId) {
   $delete = $query->execute(array($categoryId));
   $delete=null;
   header("location: /YemekSitesi/admin/categories.php");
+}
+
+//KATEGORİ TABLOSU İÇİN İÇERİK SAYISI BULMA
+function countCategory($categoryId){
+  $stmt = $GLOBALS['db']->prepare("SELECT count(*) FROM recides WHERE category_ID = ?");
+  $stmt->execute([$categoryId]);
+  $count = $stmt->fetchColumn();
+  return $count;
 }
 
 //TARİF İŞLEMLERİ
@@ -129,6 +155,16 @@ function RecideAdd($tableName,$title,$ingredients,$directions,$explanation,$cook
   header("location: /YemekSitesi/admin/recides.php");
 }
 
+//Tarif Düzenleme
+function RecideEdit($title,$ingredients,$directions,$explanation,$cooking,$preptime,$serves,$categories,$frontexplanation,$description,$tags,$id)
+{
+  $query = $GLOBALS['db']->prepare("UPDATE recides SET recides_TITLE = ? , recides_INGREDIENTS = ? , recides_DIRECTIONS = ? , recides_EXPLANATION = ? , recides_COOKING = ? ,
+    recides_PREPTIME = ? , recides_SERVES = ? , category_ID = ? , recides_FRONTEXPLANATION = ? , recides_DESCRIPTION = ? , recides_TAGS = ? WHERE recides_ID = ?");
+  $update = $query->execute(array($title,$ingredients,$directions,$explanation,$cooking,$preptime,$serves,$categories,$frontexplanation,$description,$tags,$id));
+  $update=null;
+  header("location: /YemekSitesi/admin/recides_edit.php?editid=".$id);
+}
+
 //Tarif Silme
 function RecideDelete($tableName,$recidesId) {
   $query = $GLOBALS['db']->prepare("DELETE FROM $tableName WHERE recides_ID = ?");
@@ -147,4 +183,16 @@ function metaEdit($content,$id){
   $update=null;
   header("location: /YemekSitesi/admin/metaTags.php");
 }
+
+//ALL TEXT İŞLEMLERİ
+//*******************************************************************************
+
+//ALL TEXT Düzenleme
+function allTextEdit($content,$id){
+  $query = $GLOBALS['db']->prepare("UPDATE alltexts SET alltexts_CONTENT = ? WHERE alltexts_ID = ?");
+  $update = $query->execute(array($content,$id));
+  $update=null;
+  header("location: /YemekSitesi/admin/alltexts.php");
+}
+
  ?>

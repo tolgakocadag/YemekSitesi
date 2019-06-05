@@ -7,7 +7,7 @@
 
 		<div class="five columns">
 			<!-- Headline -->
-			<h3 class="headline footer">About</h3>
+			<h3 class="headline footer">Hakkımızda</h3>
 			<span class="line"></span>
 			<div class="clearfix"></div>
 			<p>Cras at ultrices erat, sed vulputate eros. Nunc at augue gravida est fermentum vulputate. Pellentesque et ipsum in dui malesuada tempus.</p>
@@ -33,7 +33,7 @@
 		<div class="three columns">
 
 			<!-- Headline -->
-			<h3 class="headline footer">Recipes</h3>
+			<h3 class="headline footer">Tarifler</h3>
 			<span class="line"></span>
 			<div class="clearfix"></div>
 
@@ -48,15 +48,16 @@
 		<div class="five columns">
 
 			<!-- Headline -->
-			<h3 class="headline footer">Newsletter</h3>
+			<h3 class="headline footer">Bülten</h3>
 			<span class="line"></span>
 			<div class="clearfix"></div>
-			<p>Sign up to receive email updates on new product announcements, gift ideas, sales and more.</p>
+			<p>Yeni tarif duyuruları, etkinlikler, duyurular ve daha fazlası hakkında e-posta güncellemeleri almak için kaydolun.</p>
 
-			<form action="#" method="get">
-				<input class="newsletter" type="text" placeholder="mail@example.com" value=""/>
-				<button class="newsletter-btn" type="submit">Subscribe</button>
-
+			<form action="#" method="post">
+				<div class="form-group">
+					<input class="newsletter form-control" type="email" placeholder="mail@example.com" value=""/>
+					<button class="newsletter-btn form-control" type="submit">Abone Ol</button>
+				</div>
 			</form>
 		</div>
 

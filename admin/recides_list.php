@@ -28,6 +28,7 @@
               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                   <tr>
+                    <th>ID</th>
                     <th>Başlık</th>
                     <th>Kategori</th>
                     <th>Yolu</th>
@@ -37,6 +38,7 @@
                 </thead>
                 <tfoot>
                   <tr>
+                    <th>ID</th>
                     <th>Başlık</th>
                     <th>Kategori</th>
                     <th>Yolu</th>
@@ -61,6 +63,7 @@
                     $recidesHIT=$value["recides_HIT"];
                     $recidesCategory=$value["category_ID"];
                     echo "<tr>
+                      <td>{$recidesID}</td>
                       <td>{$recidesTITLE}</td>
                       <td>{$recidesCategory}</td>
                       <td>{$recidesURL}</td>

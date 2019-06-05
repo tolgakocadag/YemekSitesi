@@ -9,21 +9,23 @@
       foreach ($recipecategorylist as $key => $value) {
         $randtitle=$value['recides_TITLE'];
         $randpreptime=$value['recides_PREPTIME'];
+        $randurl=$value['recides_URL'];
+        $randcategory=$value['category_ID'];
         echo '
         <div class="four recipe-box columns">
 
           <!-- Thumbnail -->
           <div class="thumbnail-holder">
-            <a href="#">
+            <a href="/YemekSitesi/tarifler/'.$randcategory.'/'.$randurl.'.php">
               <img src="../../../images/recipeThumb-01a.jpg" alt=""/>
               <div class="hover-cover"></div>
-              <div class="hover-icon">View Recipe</div>
+              <div class="hover-icon">Tarife Git</div>
             </a>
           </div>
 
           <!-- Content -->
           <div class="recipe-box-content">
-            <h3><a href="#">'.$randtitle.'</a></h3>
+            <h3 style="font-family: Caveat, cursive;"><a href="#">'.$randtitle.'</a></h3>
 
             <div class="rating five-stars">
               <div class="star-rating"></div>

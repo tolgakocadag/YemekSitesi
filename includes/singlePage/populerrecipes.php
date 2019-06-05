@@ -10,8 +10,10 @@
       $poptitle=$value['recides_TITLE'];
       $image=$value['recides_IMAGE'];
       $image=explode(",",$image);
+      $popurl=$value['recides_URL'];
+      $popcategory=$value['category_ID'];
       echo '
-      <a href="#" class="featured-recipe">
+        <a href="/YemekSitesi/tarifler/'.$popcategory.'/'.$popurl.'.php" class="featured-recipe">
         <img style="height:100px" src="../../'.$image[0].'" alt="">
 
         <div class="featured-recipe-content">

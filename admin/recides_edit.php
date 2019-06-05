@@ -32,8 +32,9 @@
             $description=$value['recides_DESCRIPTION'];
             $tags=$value['recides_TAGS'];
             $categoryID=$value['category_ID'];
-
-            print_r($value);
+            $image=$value['recides_IMAGE'];
+            $imageexplode=rtrim($image,",");
+            $imageexplode=explode(",",$imageexplode);
           }
         }
        ?>
@@ -84,6 +85,19 @@
         </div>
         <hr />
         <div class="row ml-4">
+          <div class="form-group col-12">
+            <h3 style="text-align:center">MEVCUT RESİMLER</h3>
+            <br />
+            <?php
+                foreach ($imageexplode as $key => $value) {
+                  $nameexplode=explode("/",$imageexplode[$key]);
+                  echo "<img src='{$imageexplode[$key]}' style='width:100px;height:100px' /> {$nameexplode[count($nameexplode)-1]} <button class='btn btn-danger'>Sil</button>&emsp;";
+                }
+             ?>
+            <hr />
+          </div>
+        </div>
+        <div class="row ml-4">
           <div class="form-group col-6">
             <label for="">Ekstra Açıklamalar</label>
             <textarea id="explanation" name="explanation" rows="8" cols="80"><?php echo htmlspecialchars($explanation,ENT_QUOTES); ?></textarea>
@@ -94,6 +108,7 @@
             </div>
           </div>
           <div class="form-group col-6">
+            <h3>RESİM EKLE</h3>
             <div class="custom-file col-5 my-4">
               <input type="file" name="about_image1" class="custom-file-input"    aria-describedby="inputGroupFileAddon03">
               <label class="custom-file-label" for="post_image1">Resim 1</label>
@@ -116,7 +131,7 @@
             </div>
           </div>
         </div>
-        <center><input class="btn btn-success form-control" style="width:30%" type="submit" name="create" value="Oluştur"></center>
+        <center><input class="btn btn-success form-control" style="width:30%" type="submit" name="edit" value="Düzenle"></center>
       </form>
 
       <script>
@@ -154,69 +169,24 @@
       </script>
 
       <?php
-      if(isset($_POST['create']))
+      if(isset($_POST['edit']))
       {
         $title=$_POST['title'];
         $ingredients=$_POST['ingredients'];
         $directions=$_POST['directions'];
-        $cookinghours=$_POST['cookinghours'];
-        $cookingminutes=$_POST['cookingminutes'];
-        if($cookinghours=="0")
-        {
-          $cooking=$cookingminutes." dakika";
-        }
-        else {
-          $cooking=$cookinghours." saat ".$cookingminutes." dakika";
-        }
-        $preptimehours=$_POST['preptimehours'];
-        $preptimeminutes=$_POST['preptimeminutes'];
-        if($preptimehours=="0")
-        {
-          $preptime=$preptimeminutes." dakika";
-        }
-        else {
-          $preptime=$preptimehours." saat ".$preptimeminutes." dakika";
-        }
+        $cooking=$_POST['cooking'];
+        $preptime=$_POST['preptime'];
         $serves=$_POST['serves'];
         $categories=$_POST['categories'];
         $explanation=$_POST['explanation'];
-        $post_image="";
-        if(strlen( $_FILES['about_image1']['tmp_name'])>0)
-        {
-          $value=rand(1,30000);
-          $post_images = $_FILES['about_image1']['tmp_name'];
-          copy($post_images, '../images/recidesimg/' . $value .'_'. $_FILES['about_image1']['name']);
-          $post_image.="../images/recidesimg/{$value}_{$_FILES['about_image1']['name']}";
-          $post_image.=",";
-        }
-        if(strlen( $_FILES['about_image2']['tmp_name'])>0)
-        {
-          $value=rand(1,30000);
-          $post_images = $_FILES['about_image2']['tmp_name'];
-          copy($post_images, '../images/recidesimg/' . $value .'_'. $_FILES['about_image2']['name']);
-          $post_image.="../images/recidesimg/{$value}_{$_FILES['about_image2']['name']}";
-          $post_image.=",";
-        }
-        if(strlen( $_FILES['about_image3']['tmp_name'])>0)
-        {
-          $value=rand(1,30000);
-          $post_images = $_FILES['about_image3']['tmp_name'];
-          copy($post_images, '../images/recidesimg/' . $value .'_'. $_FILES['about_image3']['name']);
-          $post_image.="../images/recidesimg/{$value}_{$_FILES['about_image3']['name']}";
-          $post_image.=",";
-        }
-        if(strlen( $_FILES['about_image4']['tmp_name'])>0)
-        {
-          $value=rand(1,30000);
-          $post_images = $_FILES['about_image4']['tmp_name'];
-          copy($post_images, '../images/recidesimg/' . $value .'_'. $_FILES['about_image4']['name']);
-          $post_image.="../images/recidesimg/{$value}_{$_FILES['about_image4']['name']}";
-          $post_image.=",";
-        }
+        $fileimage1=$_FILES['about_image1']['tmp_name'];
+        $fileimage2=$_FILES['about_image2']['tmp_name'];
+        $fileimage3=$_FILES['about_image3']['tmp_name'];
+        $fileimage4=$_FILES['about_image4']['tmp_name'];
         $frontexplanation=$_POST['frontexplanation'];
         $description=$_POST['description'];
         $tags=$_POST['tags'];
-        RecideAdd('recides',$title,$ingredients,$directions,$explanation,$cooking,$preptime,$serves,$categories,$post_image,$frontexplanation,$description,$tags);
+        RecideEdit($title,$ingredients,$directions,$explanation,$cooking,$preptime,$serves,$categories,$frontexplanation,$description,$tags,$fileimage1,$fileimage2,$fileimage3,$fileimage4,$_GET['editid']);
       }
        ?>
 

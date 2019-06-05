@@ -18,7 +18,6 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3 row">
@@ -53,9 +52,11 @@
                       $categoryName=$value['category_NAME'];
                       $numberOfContent=$value['category_COUNT'];
                       $categoryURL=$value['category_URL'];
+                      $countcontent=countCategory($categoryURL);
+
                       echo "<tr>
                         <td>{$categoryName}</td>
-                        <td>{$numberOfContent}</td>
+                        <td>{$countcontent}</td>
                         <td>{$categoryURL}</td>
                         <td>
                           <a class='btn btn-primary btn-circle' data-toggle='modal' data-target='#editcategory{$modalnumber}' href='#'><i class='fas fa-edit'></i></a>

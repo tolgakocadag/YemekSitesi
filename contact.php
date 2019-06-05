@@ -1,29 +1,4 @@
-<!DOCTYPE html>
-<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
-
-<!-- Mirrored from www.vasterad.com/themes/chow/contact.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 03 Jun 2019 15:16:06 GMT -->
-<head>
-
-<!-- Basic Page Needs
-================================================== -->
-<meta charset="utf-8">
-<title>Chow</title>
-
-<!-- Mobile Specific Metas
-================================================== -->
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-<!-- CSS
-================================================== -->
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/colors/green.css" id="colors">
-
-<!--[if lt IE 9]>
-	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]-->
-
-</head>
+<?php require "includes/head.php"; ?>
 
 <body>
 
@@ -33,67 +8,7 @@
 
 <!-- Header
 ================================================== -->
-<header id="header">
-
-<!-- Container -->
-<div class="container">
-
-	<!-- Logo / Mobile Menu -->
-	<div class="three columns">
-		<div id="logo">
-			<h1><a href="index-2.html"><img src="images/logo.png" alt="Chow" /></a></h1>
-		</div>
-	</div>
-
-
-<!-- Navigation
-================================================== -->
-<div class="thirteen columns navigation">
-
-	<nav id="navigation" class="menu nav-collapse">
-		<ul>
-			<li><a href="index-2.html">Home</a></li>
-
-			<li><a href="#">Demos</a>
-				<ul>
-					<li><a href="index-2.html">Grid Homepage</a></li>
-					<li><a href="index-3.html">List Homepage</a></li>
-					<li><a href="index-4.html">Boxed Version</a></li>
-				</ul>
-			</li>
-
-			<li><a href="#">Recipes</a>
-				<ul>
-					<li><a href="browse-recipes.html">Browse Recipes</a></li>
-					<li><a href="recipe-page-1.html">Recipe Page #1</a></li>
-					<li><a href="recipe-page-2.html">Recipe Page #2</a></li>
-				</ul>
-			</li>
-
-			<li><a href="#" id="current">Pages</a>
-				<ul>
-					<li><a href="shortcodes.html">Shortcodes</a></li>
-					<li><a href="typography.html">Typography</a></li>
-					<li><a href="contact.html">Contact</a></li>
-				</ul>
-			</li>
-
-			<li><a href="#">Shop</a>
-				<ul>
-					<li><a href="shop.html">Shop</a></li>
-					<li><a href="product-page.html">Product Page</a></li>
-				</ul>
-			</li>
-
-			<li><a href="submit-recipe.html">Submit Recipe</a></li>
-		</ul>
-	</nav>
-
-</div>
-
-</div>
-<!-- Container / End -->
-</header>
+<?php require "includes/header.php"; ?>
 
 
 <!-- Titlebar
@@ -103,14 +18,14 @@
 	<div class="container">
 
 		<div class="eight columns">
-			<h2>Contact</h2>
+			<h2>Bize Ulaşın</h2>
 		</div>
 
 		<div class="eight columns">
 			<nav id="breadcrumbs">
 				<ul>
 					<li>You are here:</li>
-					<li><a href="#">Home</a></li>
+					<li><a href="#">Anasayfa</a></li>
 					<li>Contact</li>
 				</ul>
 			</nav>
@@ -130,7 +45,7 @@
 	<div class="sixteen columns">
 		<div class="image-with-caption contact">
 			<img class="rsImg" src="images/contact.jpg" alt="" />
-			<span>Contact me with any questions</span>
+			<span>Herhangi bir sorunuz için bize ulaşın!</span>
 		</div>
 	</div>
 </div>
@@ -145,7 +60,7 @@
 
 <!-- Contact Form -->
 <div class="twelve columns">
-		<h3 class="headline">Contact Form</h3><span class="line margin-bottom-25"></span><div class="clearfix"></div>
+		<h3 class="headline">İletişim Formu</h3><span class="line margin-bottom-25"></span><div class="clearfix"></div>
 
 		<!-- Contact Form -->
 		<section id="contact">
@@ -158,24 +73,24 @@
 
 				<fieldset>
 
-					<div>
+					<div class="form-group">
 						<label>Name:</label>
-						<input name="name" type="text" id="name" />
+						<input class="form-control" name="name" type="text" id="name" />
 					</div>
 
-					<div>
+					<div class="form-group">
 						<label >Email: <span>*</span></label>
-						<input name="email" type="email" id="email" pattern="^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})$" />
+						<input class="form-control" name="email" type="email" id="email" pattern="^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})$" />
 					</div>
 
-					<div>
+					<div class="form-group">
 						<label>Message: <span>*</span></label>
-						<textarea name="comment" cols="40" rows="3" id="comment" spellcheck="true"></textarea>
+						<textarea class="form-control" name="comment" cols="40" rows="3" id="comment" spellcheck="true"></textarea>
 					</div>
 
 				</fieldset>
 				<div id="result"></div>
-				<input type="submit" class="submit" id="submit" value="Send Message" />
+				<input type="submit" class="submit" id="submit" value="GÖNDER" />
 				<div class="clearfix"></div>
 			</form>
 
@@ -192,7 +107,7 @@
 		<h4 class="headline">Share</h4>
 		<span class="line margin-bottom-30"></span>
 		<div class="clearfix"></div>
-		
+
 		<ul class="share-buttons">
 			<li class="facebook-share">
 				<a href="#">
@@ -334,39 +249,6 @@
 <script src="scripts/custom.js"></script>
 
 
-<!-- Style Switcher
-================================================== -->
-<script src="scripts/switcher.js"></script>
-
-<div id="style-switcher">
-	<h2>Style Switcher <a href="#"></a></h2>
-	
-	<div>
-		<h3>Predefined Colors</h3>
-		<ul class="colors" id="color1">
-			<li><a href="#" class="green" title="Green"></a></li>
-			<li><a href="#" class="blue" title="Blue"></a></li>
-			<li><a href="#" class="orange" title="Orange"></a></li>
-			<li><a href="#" class="navy" title="Navy"></a></li>
-			<li><a href="#" class="yellow" title="Yellow"></a></li>
-			<li><a href="#" class="peach" title="Peach"></a></li>
-			<li><a href="#" class="beige" title="Beige"></a></li>
-			<li><a href="#" class="purple" title="Purple"></a></li>
-			<li><a href="#" class="celadon" title="Celadon"></a></li>
-			<li><a href="#" class="pink" title="Pink"></a></li>
-			<li><a href="#" class="red" title="Red"></a></li>
-			<li><a href="#" class="brown" title="Brown"></a></li>
-			<li><a href="#" class="cherry" title="Cherry"></a></li>
-			<li><a href="#" class="cyan" title="Cyan"></a></li>
-			<li><a href="#" class="gray" title="Gray"></a></li>
-			<li><a href="#" class="darkcol" title="Dark"></a></li>
-		</ul>
-		
-	</div>
-	
-	<div id="reset"><a href="#" class="button color">Reset</a></div>
-		
-</div>
 
 
 </body>

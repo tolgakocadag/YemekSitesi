@@ -34,6 +34,8 @@ foreach ($sql_list as $key => $value) {
 ================================================== -->
 <link rel="stylesheet" href="../../../css/style.css">
 <link rel="stylesheet" href="../../../css/colors/green.css" id="colors">
+<!--H2 SİNGLE PAGE FONT-->
+<link href="https://fonts.googleapis.com/css?family=Caveat:700&display=swap" rel="stylesheet">
 
 <!--[if lt IE 9]>
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>

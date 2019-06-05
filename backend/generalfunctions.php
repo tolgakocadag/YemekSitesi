@@ -17,6 +17,44 @@ function multiexplode ($delimiters,$string) {
     return  $launch;
 }
 
+//S0N 9 TARİF LİSTELEME
+function getLastRecide(){
+  $GETLastRecide=getDBLast();
+  foreach ($GETLastRecide as $key => $value) {
+    $lasttitle=$value['recides_TITLE'];
+    $lastpreptime=$value['recides_PREPTIME'];
+    $lasturl=$value['recides_URL'];
+    $categoryId=$value['category_ID'];
+    echo '
+    <div class="four recipe-box columns">
+
+      <!-- Thumbnail -->
+      <div class="thumbnail-holder">
+        <a href="/YemekSitesi/tarifler/'.$categoryId.'/'.$lasturl.'.php">
+          <img src="images/recipeThumb-01.jpg" alt=""/>
+          <div class="hover-cover"></div>
+          <div class="hover-icon">Tarifi Gör</div>
+        </a>
+      </div>
+
+      <!-- Content -->
+      <div class="recipe-box-content">
+        <h3 style="font-family: Caveat, cursive;"><a href="/YemekSitesi/tarifler/'.$categoryId.'/'.$lasturl.'.php">'.$lasttitle.'</a></h3>
+
+        <div class="rating five-stars">
+          <div class="star-rating"></div>
+          <div class="star-bg"></div>
+        </div>
+
+        <div class="recipe-meta"></div>
+
+        <div class="clearfix"></div>
+      </div>
+    </div>
+    ';
+  }
+}
+
 //tarif eklerken kategori seçme
 function getCategory(){
   $getCategory=getDB('categories');

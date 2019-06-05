@@ -26,7 +26,8 @@
 						foreach ($category_list as $key => $value) {
 							$categoryName=$value['category_NAME'];
 							$categoryCount=$value['category_COUNT'];
-							echo '<li><a href="#">'.$categoryName.' <span>('.$categoryCount.')</span></a></li>';
+							$categoryUrl=$value['category_URL'];
+							echo '<li><a href="/YemekSitesi/tarifler?kategori='.$categoryUrl.'">'.$categoryName.' <span>('.$categoryCount.')</span></a></li>';
 						}
 			 ?>
 		</ul>
@@ -35,57 +36,45 @@
 
 	<!-- Popular Recipes -->
 	<div class="widget">
-		<h4 class="headline">Popüler Yemek Tarifleri</h4>
-		<span class="line margin-bottom-30"></span>
-		<div class="clearfix"></div>
+	  <h4 class="headline">Popüler Tarifler</h4>
+	  <span class="line margin-bottom-30"></span>
+	  <div class="clearfix"></div>
 
-		<!-- Recipe #1 -->
-		<a href="recipe-page-1.html" class="featured-recipe">
-			<img src="images/featuredRecipe-01.jpg" alt="">
+	  <!-- Recipe #1 -->
+	  <?php
+	    $populerrecipelist=getDBDESC();
+	    foreach ($populerrecipelist as $key => $value) {
+	      $poptitle=$value['recides_TITLE'];
+	      $image=$value['recides_IMAGE'];
+				$image=rtrim($image,",");
+				$image=explode(",",$image);
+				$image=ltrim($image[0],".");
+				$image=ltrim($image,".");
+				$image=ltrim($image,"/");
+				$popurl=$value['recides_URL'];
+				$popcategory=$value['category_ID'];
+	      echo '
+	      <a href="/YemekSitesi/tarifler/'.$popcategory.'/'.$popurl.'.php" class="featured-recipe">
+	        <img style="height:100px" src="'.$image.'" alt="">
 
-			<div class="featured-recipe-content">
-				<h4>Choclate Cake With Green Tea Cream</h4>
+	        <div class="featured-recipe-content">
+	          <h4>'.$poptitle.'</h4>
 
-				<div class="rating five-stars">
-					<div class="star-rating"></div>
-					<div class="star-bg"></div>
-				</div>
-			</div>
-			<div class="post-icon"></div>
-		</a>
+	          <div class="rating five-stars">
+	            <div class="star-rating"></div>
+	            <div class="star-bg"></div>
+	          </div>
+	        </div>
+	        <div class="post-icon"></div>
+	      </a>
+	      ';
+	    }
+	   ?>
 
-		<!-- Recipe #2 -->
-		<a href="recipe-page-1.html" class="featured-recipe">
-			<img src="images/featuredRecipe-02.jpg" alt="">
 
-			<div class="featured-recipe-content">
-				<h4>Mexican Grilled Corn Recipe</h4>
-
-				<div class="rating five-stars">
-					<div class="star-rating"></div>
-					<div class="star-bg"></div>
-				</div>
-			</div>
-			<div class="post-icon"></div>
-		</a>
-
-		<!-- Recipe #3 -->
-		<a href="recipe-page-1.html" class="featured-recipe">
-			<img src="images/featuredRecipe-03.jpg" alt="">
-
-			<div class="featured-recipe-content">
-				<h4>Pollo Borracho With Homemade Tortillas</h4>
-
-				<div class="rating five-stars">
-					<div class="star-rating"></div>
-					<div class="star-bg"></div>
-				</div>
-			</div>
-			<div class="post-icon"></div>
-		</a>
-
-		<div class="clearfix"></div>
+	  <div class="clearfix"></div>
 	</div>
+
 
 
 	<!-- Share -->
