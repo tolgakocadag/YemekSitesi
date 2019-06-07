@@ -32,6 +32,7 @@
             $description=$value['recides_DESCRIPTION'];
             $tags=$value['recides_TAGS'];
             $categoryID=$value['category_ID'];
+            $recidesurl=$value['recides_URL'];
             $image=$value['recides_IMAGE'];
             $imageexplode=rtrim($image,",");
             $imageexplode=explode(",",$imageexplode);
@@ -131,6 +132,7 @@
             </div>
           </div>
         </div>
+        <input type="hidden" name="categoryurl" value="<?php echo $categoryID; ?>">
         <center><input class="btn btn-success form-control" style="width:30%" type="submit" name="edit" value="Düzenle"></center>
       </form>
 
@@ -186,7 +188,8 @@
         $frontexplanation=$_POST['frontexplanation'];
         $description=$_POST['description'];
         $tags=$_POST['tags'];
-        RecideEdit($title,$ingredients,$directions,$explanation,$cooking,$preptime,$serves,$categories,$frontexplanation,$description,$tags,$fileimage1,$fileimage2,$fileimage3,$fileimage4,$_GET['editid']);
+        $url=$_POST['categoryurl'];
+        RecideEdit($title,$ingredients,$directions,$explanation,$cooking,$preptime,$serves,$image,$categories,$frontexplanation,$description,$tags,$url,$recidesurl,$_GET['editid']);
       }
        ?>
 

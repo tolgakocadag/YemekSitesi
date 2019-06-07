@@ -156,11 +156,28 @@ function RecideAdd($tableName,$title,$ingredients,$directions,$explanation,$cook
 }
 
 //Tarif Düzenleme
-function RecideEdit($title,$ingredients,$directions,$explanation,$cooking,$preptime,$serves,$categories,$frontexplanation,$description,$tags,$id)
+function RecideEdit($title,$ingredients,$directions,$explanation,$cooking,$preptime,$serves,$image,$categories,$frontexplanation,$description,$tags,$url,$recidesurl,$id)
 {
+  $recidesurl=explode("/",$recidesurl);
+  $image=rtrim($image,",");
+  $newimage="";
+  $image=explode(",",$image);
+  foreach ($image as $key => $value) {
+    $image2=explode("/",$image[$key]);
+    foreach ($image2 as $key1 => $value1) {
+      if ($key1==2) {
+        $newimage.=$categories.'/';
+      }
+      else {
+        $newimage.=$image2[$key1].'/';
+      }
+    }
+  }
+  $newimage=rtrim($newimage,'/');
+  rename('../tarifler/'.$url.'/'.$recidesurl[0], '../tarifler/'.$categories.'/'.$recidesurl[0]);
   $query = $GLOBALS['db']->prepare("UPDATE recides SET recides_TITLE = ? , recides_INGREDIENTS = ? , recides_DIRECTIONS = ? , recides_EXPLANATION = ? , recides_COOKING = ? ,
-    recides_PREPTIME = ? , recides_SERVES = ? , category_ID = ? , recides_FRONTEXPLANATION = ? , recides_DESCRIPTION = ? , recides_TAGS = ? WHERE recides_ID = ?");
-  $update = $query->execute(array($title,$ingredients,$directions,$explanation,$cooking,$preptime,$serves,$categories,$frontexplanation,$description,$tags,$id));
+    recides_PREPTIME = ? , recides_SERVES = ? , recides_IMAGE = ? , category_ID = ? , recides_FRONTEXPLANATION = ? , recides_DESCRIPTION = ? , recides_TAGS = ? WHERE recides_ID = ?");
+  $update = $query->execute(array($title,$ingredients,$directions,$explanation,$cooking,$preptime,$serves,$newimage,$categories,$frontexplanation,$description,$tags,$id));
   $update=null;
   header("location: /YemekSitesi/admin/recides_edit.php?editid=".$id);
 }
@@ -189,6 +206,17 @@ function metaEdit($content,$id){
 
 //ALL TEXT Düzenleme
 function allTextEdit($content,$id){
+  $query = $GLOBALS['db']->prepare("UPDATE alltexts SET alltexts_CONTENT = ? WHERE alltexts_ID = ?");
+  $update = $query->execute(array($content,$id));
+  $update=null;
+  header("location: /YemekSitesi/admin/alltexts.php");
+}
+
+//TOP5 İŞLEMLERİ
+//******************************************************************************
+
+//TOP5 EDİR İŞLEMLERİ
+function top5Edit($content,$id){
   $query = $GLOBALS['db']->prepare("UPDATE alltexts SET alltexts_CONTENT = ? WHERE alltexts_ID = ?");
   $update = $query->execute(array($content,$id));
   $update=null;

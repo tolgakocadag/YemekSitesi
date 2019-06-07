@@ -94,11 +94,19 @@
       <i class="fas fa-fw fa-table"></i>
       <span>Meta Etiketleri</span></a>
   </li>
+
   <!-- Nav Item - Tables -->
   <li class="nav-item">
     <a class="nav-link" href="alltexts.php">
       <i class="fas fa-fw fa-table"></i>
       <span>Genel Yazılar</span></a>
+  </li>
+
+  <!-- Nav Item - Tables -->
+  <li class="nav-item">
+    <a class="nav-link" href="top5.php">
+      <i class="fas fa-fw fa-table"></i>
+      <span>TOP5 Slider</span></a>
   </li>
 
   <!-- Divider -->
