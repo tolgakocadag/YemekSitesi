@@ -275,7 +275,7 @@ function RecideEditdeleteimage($deleteimage,$recideid)
   $query = $GLOBALS['db']->prepare("UPDATE recides SET recides_IMAGE = ? WHERE recides_ID = ?");
   $update = $query->execute(array($deleteimage,$recideid));
   $update=null;
-  header("location: /YemekSitesi/admin/recides_edit.php?editid=".$recideid);
+  header("location: /admin/recides_edit.php?editid=".$recideid);
 }
 
 //Tarif Silme

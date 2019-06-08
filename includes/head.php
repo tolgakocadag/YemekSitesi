@@ -21,7 +21,6 @@
 <!-- Basic Page Needs
 ================================================== -->
 <meta charset="utf-8">
-<title>Mükemmel Tarifler</title>
 
 <!-- Mobile Specific Metas
 ================================================== -->
@@ -34,7 +33,13 @@ $sql_list=getDB('metatags');
 foreach ($sql_list as $key => $value) {
   $metatag_name=$value['metatag_NAME'];
   $metatag_content=$value['metatag_CONTENT'];
-  echo "<meta name='{$metatag_name}' content='{$metatag_content}'>";
+  if($metatag_name=="title"||$metatag_name=="keywords")
+  {
+
+  }
+  else {
+    echo "<meta name='{$metatag_name}' content='{$metatag_content}'>";
+  }
 }
  ?>
 
@@ -48,5 +53,3 @@ foreach ($sql_list as $key => $value) {
 <!--[if lt IE 9]>
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
-
-</head>

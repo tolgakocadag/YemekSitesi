@@ -24,10 +24,19 @@
     <section class="recipe-details" itemprop="nutrition">
       <ul>
         <li>Kaç Kişilik: <strong itemprop="recipeYield"><?php echo $serves;?></strong></li>
-        <li>Hazırlama Süresi: <strong itemprop="prepTime"><?php echo $preptime;?></strong></li>
-        <li>Pişirme Süresi: <strong itemprop="cookTime"><?php echo $cooking;?></strong></li>
+        <?php
+
+        if(strlen($preptime)>0)
+        {
+          echo '<li>Hazırlama Süresi: <strong itemprop="prepTime">'.$preptime.'</strong></li>';
+        }
+        if(strlen($cooking)>0)
+        {
+          echo '<li>Pişirme Süresi: <strong itemprop="cookTime">'.$cooking.'</strong></li>';
+        }
+         ?>
       </ul>
-      <a href="#" class="print"><i class="fa fa-print"></i> Print</a>
+      <a href="#" class="print"><i class="fa fa-print"></i> Tarifi Yazdır</a>
       <div class="clearfix"></div>
     </section>
 

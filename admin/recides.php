@@ -166,8 +166,11 @@
         {
           $cooking=$cookingminutes." dakika";
         }
+        elseif ($cookinghours=="0"&&$cookingminutes=="0") {
+          $cooking="";
+        }
         else {
-          $cooking=$cookinghours." saat ".$cookingminutes." dakika";
+          $cooking=$cookinghours." saat";
         }
         $preptimehours=$_POST['preptimehours'];
         $preptimeminutes=$_POST['preptimeminutes'];
@@ -175,8 +178,11 @@
         {
           $preptime=$preptimeminutes." dakika";
         }
+        elseif ($preptimehours=="0"&&$preptimeminutes=="0") {
+          $preptime="";
+        }
         else {
-          $preptime=$preptimehours." saat ".$preptimeminutes." dakika";
+          $preptime=$preptimehours." saat";
         }
         $serves=$_POST['serves'];
         $categories=$_POST['categories'];

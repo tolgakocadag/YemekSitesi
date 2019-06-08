@@ -1,9 +1,7 @@
 <?php require "includes/head.php"; ?>
-<body>
-
-<!-- Wrapper -->
-<div id="wrapper">
-
+<title>Mükemmel Tarifler</title>
+<meta name='title' content='Mükemmel Tarifler'>
+<meta name='keywords' content='Mükemmel Tarifler,mükemmel yemek tarifleri,yemek tarifleri,tatlı tarifleri,salata tarifleri'>
 
 <?php require "includes/header.php"; ?>
 
