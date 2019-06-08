@@ -69,30 +69,100 @@
 			<mark id="message"></mark>
 
 			<!-- Form -->
-			<form method="post" name="contactform" id="contactform">
-
-				<fieldset>
-
-					<div class="form-group">
-						<label>Name:</label>
-						<input class="form-control" name="name" type="text" id="name" />
+			<form action="" method="post">
+					<div class="row">
+						<div class="form-group col-6">
+								<input type="text" class="form-control" name="name" required id="contact-name" placeholder="Adınız...">
+						</div>
 					</div>
-
 					<div class="form-group">
-						<label >Email: <span>*</span></label>
-						<input class="form-control" name="email" type="email" id="email" pattern="^[A-Za-z0-9](([_\.\-]?[a-zA-Z0-9]+)*)@([A-Za-z0-9]+)(([\.\-]?[a-zA-Z0-9]+)*)\.([A-Za-z]{2,})$" />
+							<input type="email" class="form-control" name="email" required id="contact-email" placeholder="Email adresiniz...">
 					</div>
-
 					<div class="form-group">
-						<label>Message: <span>*</span></label>
-						<textarea class="form-control" name="comment" cols="40" rows="3" id="comment" spellcheck="true"></textarea>
+							<input type="text" class="form-control" name="subject" required id="contact-website" placeholder="Mesajınızın Konusu...">
 					</div>
-
-				</fieldset>
-				<div id="result"></div>
-				<input type="submit" class="submit" id="submit" value="GÖNDER" />
-				<div class="clearfix"></div>
+					<div class="form-group">
+							<textarea class="form-control" name="message" required id="message" cols="30" rows="10" placeholder="Mesajınız..."></textarea>
+					</div>
+					<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+					<center><div class="g-recaptcha" data-callback="enableBtn" data-sitekey="6LciqqcUAAAAAHyIj8xNNl0uTLUb2z-OWXIDa9Ue"></div></center>
+					<center><button type="submit" id="recaptchaClicked" disabled name="submit" class="btn contact-btn">Mesajı Gönder</button></center>
 			</form>
+			<script type="text/javascript">
+			function enableBtn() {
+				document.getElementById("recaptchaClicked").disabled = false;
+			}
+			</script>
+			<?php
+			if(isset($_POST['message'])&&$_POST['message']!=""&&$_POST['name']!=""&&$_POST['surname']!=""&&$_POST['email']!=""&&$_POST['subject']!=""){
+				$recaptcha = $_POST['g-recaptcha-response'];
+				if (!empty($recaptcha)) {
+					$google_url = "https://www.google.com/recaptcha/api/siteverify";
+					$secret = '6LciqqcUAAAAAADBUQjHRr1bleSWKALZkUmPG7W9';
+					//kullanıcının ip adresi
+					$ip = $_SERVER['REMOTE_ADDR'];
+					//istek adresini oluşturuyoruz
+					$url = $google_url . "?secret=" . $secret . "&response=" . $recaptcha . "&remoteip=" . $ip;
+					$res = curlKullan($url);
+					$res = json_decode($res, true);
+
+					//işlem başarılıysa çalışacak kısım
+					if ($res['success']) {
+						include "backend/class.phpmailer.php";
+						$ip=GetIp();
+						$name=$_POST['name'];
+						$email=$_POST['email'];
+						$subject=$_POST['subject'];
+						$subject=replace_tr($subject);
+						$message=$_POST['message'];
+						$mail = new PHPMailer();
+						$mail->IsSMTP();
+						$mail->SMTPAuth = true;
+						$mail->Host = 'mail.mukemmeltarifler.com';
+						$mail->Port = 587;
+						$mail->Username = 'iletisim@mukemmeltarifler.com';
+						$mail->Password = 'p*Xylee7y$}E';
+						$mail->SetFrom($mail->Username, $name);
+						$mail->AddAddress('iletisim@mukemmeltarifler.com', 'mukemmeltarifler');
+						$mail->CharSet = 'UTF-8';
+						$mail->Subject = $subject;
+						$mail->MsgHTML('İsim:   '.$name.'<br/>
+						Konu:'.$subject.'<br/>
+						E-Posta:   '.$email.'<br/>
+						Mesaj:   '.$message.'<br/>
+						IP Adresi:   '.$ip);
+						if($mail->Send()) {
+							echo '<br/><center>Mesajınız başarıyla gönderildi.</center>';
+							$mail = new PHPMailer();
+							$mail->IsSMTP();
+							$mail->SMTPAuth = true;
+							$mail->Host = 'mail.tolgakocadag.com';
+							$mail->Port = 587;
+							$mail->Username = 'iletisim@tolgakocadag.com';
+							$mail->Password = 'Tlgkcdg3434';
+							$mail->SetFrom($mail->Username, 'Tolga Kocadag Blog');
+							$mail->AddAddress($email, ' ');
+							$mail->CharSet = 'UTF-8';
+							$mail->Subject = $subject;
+							$mail->MsgHTML('Merhaba '.$name.',<br /><br />Mesajınızı aldık. En kısa sürede yetkili kişiler tarafından dönüş yapılacaktır.<br /><br />Teşekkür ederiz.<br />tolgakocadag.com');
+							$mail->Send();
+							$_POST['name']="";
+							$_POST['email']="";
+							$_POST['subject']="";
+							$_POST['message']="";
+						}
+						else {
+							echo '<br />Mesaj gönderirken bir hata oluştu ve girmiş olduğunuz bilgiler alınamadı.' . $mail->ErrorInfo;}
+						}
+						else {
+							echo "<br /><center>Lütfen bot olmadığınızı doğrulayın</center>";
+						}
+					}
+					else {
+						echo "<br /><center>Lütfen bot olmadığınızı doğrulayın</center>";
+					}
+				}
+			 ?>
 
 		</section>
 		<!-- Contact Form / End -->

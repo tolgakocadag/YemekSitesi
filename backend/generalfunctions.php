@@ -17,11 +17,60 @@ function multiexplode ($delimiters,$string) {
     return  $launch;
 }
 
+//site organic arama tutucu googleden çıkmaya başlıyınca yapılacak
+/*function organicSearch(){
+  $referans=$_SERVER["HTTP_REFERER"];
+  if(preg_match("#^http://www.google.com.*................../#i",$referans)){
+      $organicurl=parse_url(urldecode($referans));
+      parse_str($organicurl["query"], $sorgu);
+      $kelime=$sorgu["q"]."\r\n";
+      $fp=fopen("kelimeler.txt","a+");
+      fwrite($fp,$kelime);
+      fclose($fp);
+  }
+  else{
+      $referans=$_SERVER["HTTP_REFERER"];
+
+      echo $referans;
+  }
+  ?>
+}*/
+
+//recaptcha doğrulama
+function curlKullan($url) {
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_URL, $url);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($curl, CURLOPT_TIMEOUT, 10);
+    curl_setopt($curl, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.2.16) Gecko/20110319 Firefox/3.6.16");
+    $curlData = curl_exec($curl);
+    curl_close($curl);
+    return $curlData;
+}
+
+//İP ALAN FONKSİYON
+function GetIP(){
+ if(getenv("HTTP_CLIENT_IP")) {
+ $ip = getenv("HTTP_CLIENT_IP");
+ } elseif(getenv("HTTP_X_FORWARDED_FOR")) {
+ $ip = getenv("HTTP_X_FORWARDED_FOR");
+ if (strstr($ip, ',')) {
+ $tmp = explode (',', $ip);
+ $ip = trim($tmp[0]);
+ }
+ } else {
+ $ip = getenv("REMOTE_ADDR");
+ }
+ return $ip;
+}
+
 //S0N 9 TARİF LİSTELEME
 function getLastRecide(){
   $GETLastRecide=getDBLast();
   foreach ($GETLastRecide as $key => $value) {
     $lasttitle=$value['recides_TITLE'];
+    $lastimage=$value['recides_IMAGE'];
+    $lastimage=explode(',',$lastimage);
     $lastpreptime=$value['recides_PREPTIME'];
     $lasturl=$value['recides_URL'];
     $categoryId=$value['category_ID'];
@@ -30,8 +79,8 @@ function getLastRecide(){
 
       <!-- Thumbnail -->
       <div class="thumbnail-holder">
-        <a href="/YemekSitesi/tarifler/'.$categoryId.'/'.$lasturl.'.php">
-          <img src="images/recipeThumb-01.jpg" alt=""/>
+        <a href="tarifler/'.$categoryId.'/'.$lasturl.'.php">
+          <img src="'.$lastimage[0].'" alt=""/>
           <div class="hover-cover"></div>
           <div class="hover-icon">Tarifi Gör</div>
         </a>
@@ -39,7 +88,7 @@ function getLastRecide(){
 
       <!-- Content -->
       <div class="recipe-box-content">
-        <h3 style="font-family: Caveat, cursive;"><a href="/YemekSitesi/tarifler/'.$categoryId.'/'.$lasturl.'.php">'.$lasttitle.'</a></h3>
+        <h3 style="font-family: Caveat, cursive;"><a href="tarifler/'.$categoryId.'/'.$lasturl.'.php">'.$lasttitle.'</a></h3>
 
         <div class="rating five-stars">
           <div class="star-rating"></div>

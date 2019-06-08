@@ -4,7 +4,7 @@
 	<!-- Container -->
 	<div class="container">
 
-		<div class="eight columns">© Copyright 2014 by <a href="#">Chow</a>. All Rights Reserved.</div>
+		<div class="eight columns"><?php echo $copyrighttext; ?></div>
 
 	</div>
 	<!-- Container / End -->

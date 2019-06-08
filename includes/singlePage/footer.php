@@ -1,19 +1,50 @@
+</div>
+
+
+</div>
+<!-- Container / End -->
+
+
+</div>
+<!-- Wrapper / End -->
+
+
 <div id="footer">
 
   <!-- Container -->
   <div class="container">
 
+    <?php
+
+    $alltext=getDB('alltexts');
+    foreach ($alltext as $key => $value) {
+      if($value['alltexts_NAME']=='Hakkımızda')
+      {
+        $hakkimizdatext=$value['alltexts_CONTENT'];
+      }
+      if($value['alltexts_NAME']=='Bülten')
+      {
+        $bultentext=$value['alltexts_CONTENT'];
+      }
+      if($value['alltexts_NAME']=='Copyright')
+      {
+        $copyrighttext=$value['alltexts_CONTENT'];
+      }
+    }
+
+     ?>
+
     <div class="five columns">
-      <!-- Headline -->
-      <h3 class="headline footer">About</h3>
+
+      <h3 class="headline footer">Hakkımızda</h3>
       <span class="line"></span>
       <div class="clearfix"></div>
-      <p>Cras at ultrices erat, sed vulputate eros. Nunc at augue gravida est fermentum vulputate. Pellentesque et ipsum in dui malesuada tempus.</p>
+      <p><?php echo $hakkimizdatext; ?></p>
     </div>
 
-    <div class="three columns">
+    <!--<div class="three columns">
 
-      <!-- Headline -->
+
       <h3 class="headline footer">Archives</h3>
       <span class="line"></span>
       <div class="clearfix"></div>
@@ -30,7 +61,7 @@
 
     <div class="three columns">
 
-      <!-- Headline -->
+
       <h3 class="headline footer">Recipes</h3>
       <span class="line"></span>
       <div class="clearfix"></div>
@@ -41,19 +72,19 @@
         <li><a href="submit-recipe.html">Submit Recipe</a></li>
       </ul>
 
-    </div>
+    </div>-->
 
     <div class="five columns">
 
       <!-- Headline -->
-      <h3 class="headline footer">Newsletter</h3>
+      <h3 class="headline footer">Bülten</h3>
       <span class="line"></span>
       <div class="clearfix"></div>
-      <p>Sign up to receive email updates on new product announcements, gift ideas, sales and more.</p>
+      <p><?php echo $bultentext; ?></p>
 
       <form action="#" method="get">
         <input class="newsletter" type="text" placeholder="mail@example.com" value=""/>
-        <button class="newsletter-btn" type="submit">Subscribe</button>
+        <button class="newsletter-btn" type="submit">Abone Ol</button>
 
       </form>
     </div>
@@ -63,3 +94,7 @@
 
 </div>
 <!-- Footer / End -->
+
+
+<!-- Back To Top Button -->
+<div id="backtotop"><a href="#"></a></div>

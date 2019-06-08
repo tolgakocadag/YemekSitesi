@@ -13,7 +13,7 @@
       $popurl=$value['recides_URL'];
       $popcategory=$value['category_ID'];
       echo '
-        <a href="/YemekSitesi/tarifler/'.$popcategory.'/'.$popurl.'.php" class="featured-recipe">
+        <a href="/tarifler/'.$popcategory.'/'.$popurl.'" class="featured-recipe">
         <img style="height:100px" src="../../'.$image[0].'" alt="">
 
         <div class="featured-recipe-content">

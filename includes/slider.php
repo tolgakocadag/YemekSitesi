@@ -1,161 +1,70 @@
 <!-- Slider
 ================================================== -->
-
 <div id="homeSlider" class="royalSlider rsDefaultInv">
+	<?php
 
-	<!-- Slide #1 -->
-	<div class="rsContent">
-		<a class="rsImg" href="images/sliderA_01.jpg"></a>
-		<i class="rsTmb">Mexican Grilled <br> Corn Recipe</i>
+	$getSlider=getDB("top5");
+	foreach ($getSlider as $key => $value) {
+		$sliderTITLE=$value['top5_NAME'];
+		$sliderIMAGE=$value['top5_IMAGE'];
+		$sliderPREPTIME=$value['top5_PREPTIME'];
+		$sliderSERVES=$value['top5_SERVES'];
+		$sliderURL=$value['top5_URL'];
+		echo '
+		<div class="rsContent">
+			<img style="width:100%;height:100%" src="images/top5/'.$sliderIMAGE.'" />
+			<i class="rsTmb">'.$sliderTITLE.'</i>
 
-		<!-- Slide Caption -->
-		<div class="SlideTitleContainer rsABlock">
-		<div class="CaptionAlignment">
-			<div class="rsSlideTitle tags">
-				<ul>
-					<li>Baking</li>
-				</ul>
-				<div class="clearfix"></div>
+			<!-- Slide Caption -->
+			<div class="SlideTitleContainer rsABlock">
+			<div class="CaptionAlignment">
+				<div class="rsSlideTitle tags">
+					<div class="clearfix"></div>
+				</div>';
+				if(strlen($sliderSERVES)>0){
+					if(strstr($_SERVER['HTTP_USER_AGENT'],"Windows")){
+						echo '<h2 class="rsSlideTitle title"><a href="tarifler/'.$sliderURL.'">'.$sliderTITLE.'</a></h2>';
+					}
+					else {
+						$explodeslidertitle=explode(" ",$sliderTITLE);
+						$newslidertitle="";
+						foreach ($explodeslidertitle as $keys => $values) {
+							if($keys==2)
+							{
+								$newslidertitle.='<br />'.$explodeslidertitle[$keys].' ';
+							}
+							else {
+								$newslidertitle.=$explodeslidertitle[$keys].' ';
+							}
+
+						}
+						echo '<h2 class="rsSlideTitle title"><a style="font-size:20px" href="tarifler/'.$sliderURL.'">'.$newslidertitle.'</a></h2>';
+					}
+				}
+				echo '
+				<div class="rsSlideTitle details">
+					<ul>';
+					if(strlen($sliderSERVES)>0)
+					{
+						echo '
+						<li><i class="fa fa-cutlery"></i> '.$sliderSERVES.'</li>
+						<li><i class="fa fa-clock-o"></i> '.$sliderPREPTIME.'</li>';
+					}
+					echo '
+					</ul>
+				</div>';
+				if(strlen($sliderSERVES)>0)
+				{
+					echo '<a href="tarifler/'.$sliderURL.'" class="rsSlideTitle button">Tarife Git</a>';
+				}
+				echo '
+			</div>
 			</div>
 
-			<h2 class="rsSlideTitle title"><a href="recipe-page-1.html">Mexican Grilled Corn Recipe</a></h2>
-
-			<div class="rsSlideTitle details">
-				<ul>
-					<li><i class="fa fa-cutlery"></i> 4 Servings</li>
-					<li><i class="fa fa-clock-o"></i> 30 Min</li>
-					<li><i class="fa fa-user"></i> by <a href="#">Sandra Fortin</a></li>
-				</ul>
-			</div>
-
-			<a href="recipe-page-1.html" class="rsSlideTitle button">View Recipe</a>
 		</div>
-		</div>
+		';
+	}
 
-	</div>
-
-	<!-- Slide #2 -->
-	<div class="rsContent">
-		<a class="rsImg" href="images/sliderA_02.jpg"></a>
-		<i class="rsTmb">Roast Chicken <br>With Lemon Gravy</i>
-
-		<!-- Slide Caption -->
-		<div class="SlideTitleContainer rsABlock">
-		<div class="CaptionAlignment">
-			<div class="rsSlideTitle tags">
-				<ul>
-					<li>Curry</li>
-				</ul>
-				<div class="clearfix"></div>
-			</div>
-
-			<h2 class="rsSlideTitle title"><a href="recipe-page-1.html">Roast Chicken <br>With Lemon Gravy</a></h2>
-
-			<div class="rsSlideTitle details">
-				<ul>
-					<li><i class="fa fa-cutlery"></i> 4 Servings</li>
-					<li><i class="fa fa-clock-o"></i> 1 Hr 20 Min</li>
-					<li><i class="fa fa-user"></i> by <a href="#">Sandra Fortin</a></li>
-				</ul>
-			</div>
-
-			<a href="recipe-page-1.html" class="rsSlideTitle button">View Recipe</a>
-		</div>
-		</div>
-
-	</div>
-
-	<!-- Slide #3 -->
-	<div class="rsContent">
-		<a class="rsImg" href="images/sliderA_03.jpg"></a>
-		<i class="rsTmb">Avocado Melon Salad <br> With Lime Vinaigrette </i>
-
-		<!-- Slide Caption -->
-		<div class="SlideTitleContainer rsABlock">
-		<div class="CaptionAlignment">
-			<div class="rsSlideTitle tags">
-				<ul>
-					<li>Salads</li>
-				</ul>
-				<div class="clearfix"></div>
-			</div>
-
-			<h2 class="rsSlideTitle title"><a href="recipe-page-2.html">Avocado Melon Salad With Lime Vinaigrette</a></h2>
-
-			<div class="rsSlideTitle details">
-				<ul>
-					<li><i class="fa fa-cutlery"></i> 1 Servings</li>
-					<li><i class="fa fa-clock-o"></i> 15 Min</li>
-					<li><i class="fa fa-user"></i> by <a href="#">Sandra Fortin</a></li>
-				</ul>
-			</div>
-
-			<a href="recipe-page-2.html" class="rsSlideTitle button">View Recipe</a>
-		</div>
-		</div>
-
-	</div>
-
-	<!-- Slide #4 -->
-	<div class="rsContent">
-		<a class="rsImg" href="images/sliderA_04.jpg"></a>
-		<i class="rsTmb">Chunky Beef Stew</i>
-
-		<!-- Slide Caption -->
-		<div class="SlideTitleContainer rsABlock">
-		<div class="CaptionAlignment">
-			<div class="rsSlideTitle tags">
-				<ul>
-					<li>Beef</li>
-				</ul>
-				<div class="clearfix"></div>
-			</div>
-
-			<h2 class="rsSlideTitle title"><a href="recipe-page-1.html">Chunky Beef Stew</a></h2>
-
-			<div class="rsSlideTitle details">
-				<ul>
-					<li><i class="fa fa-cutlery"></i> 4 Servings</li>
-					<li><i class="fa fa-clock-o"></i> 2 Hr 30 Min</li>
-					<li><i class="fa fa-user"></i> by <a href="#">Sandra Fortin</a></li>
-				</ul>
-			</div>
-
-			<a href="recipe-page-1.html" class="rsSlideTitle button">View Recipe</a>
-		</div>
-		</div>
-
-	</div>
-
-	<!-- Slide #5 -->
-	<div class="rsContent">
-		<a class="rsImg" href="images/sliderA_05.jpg"></a>
-		<i class="rsTmb">Farmhouse Vegetable <br> And Barley Soup</i>
-
-		<!-- Slide Caption -->
-		<div class="SlideTitleContainer rsABlock">
-		<div class="CaptionAlignment">
-			<div class="rsSlideTitle tags">
-				<ul>
-					<li>Soups</li>
-				</ul>
-				<div class="clearfix"></div>
-			</div>
-
-			<h2 class="rsSlideTitle title"><a href="recipe-page-1.html">Farmhouse Vegetable And Barley Soup</a></h2>
-
-			<div class="rsSlideTitle details">
-				<ul>
-					<li><i class="fa fa-cutlery"></i> 4 Servings</li>
-					<li><i class="fa fa-clock-o"></i> 1 Hr 30 Min</li>
-					<li><i class="fa fa-user"></i> by <a href="#">Sandra Fortin</a></li>
-				</ul>
-			</div>
-
-			<a href="recipe-page-1.html" class="rsSlideTitle button">View Recipe</a>
-		</div>
-		</div>
-
-	</div>
+	 ?>
 
 </div>

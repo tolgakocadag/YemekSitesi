@@ -23,7 +23,9 @@
           $top5_id=$value['top5_ID'];
           $top5_name=$value['top5_NAME'];
           $top5_image=$value['top5_IMAGE'];
-          $top5_isrecide=$value['top5_isRecide'];
+          $top5_preptime=$value['top5_PREPTIME'];
+          $top5_serves=$value['top5_SERVES'];
+          $top5_url=$value['top5_URL'];
           echo "
           <div class='row my-4'>
             <div class='form-group ml-4 col-2'>
@@ -33,7 +35,13 @@
                 <input type='text' readonly class='form-control' required name='' value='{$top5_image}'>
             </div>
             <div class='form-group ml-4 col-2'>
-                <input type='text' readonly class='form-control' required name='' value='{$top5_isrecide}'>
+                <input type='text' readonly class='form-control' required name='' value='{$top5_preptime}'>
+            </div>
+            <div class='form-group ml-4 col-2'>
+                <input type='text' readonly class='form-control' required name='' value='{$top5_serves}'>
+            </div>
+            <div class='form-group ml-4 col-2'>
+                <input type='text' readonly class='form-control' required name='' value='{$top5_url}'>
             </div>
             <a class='btn btn-primary btn-circle' data-toggle='modal' data-target='#edit_modal{$modalcount}' href='#'><i class='fas fa-edit'></i></a>
           </div>";
@@ -52,18 +60,27 @@
                       <form action="" method="post" enctype="multipart/form-data">
                           <div class="form-group">
                               <label for="menu_name">Başlık</label>
-                              <input type="text" class="form-control"  required name="top5_name" value="<?php echo $top5_name;?>">
+                              <input type="text" class="form-control"  required name="top5_NAME" value="<?php echo $top5_name;?>">
                           </div>
                           <div class="custom-file">
                             <input type="file" name="about_image" class="custom-file-input"    aria-describedby="inputGroupFileAddon03">
                             <label class="custom-file-label" for="post_image">Resim</label>
                           </div>
                           <div class="form-group my-4">
-                              <label for="menu_url">Tarif mi => </label>
-                              <input type="checkbox" name="top5_isRecide" value="<?php echo $top5_isrecide?>">
+                              <label for="menu_url">HAZIRLAMA SÜRESİ </label>
+                              <input type="text" class="form-control" name="top5_PREPTIME" value="<?php echo $top5_preptime; ?>">
+                          </div>
+                          <div class="form-group my-4">
+                              <label for="menu_url">KAÇ KİŞİLİK </label>
+                              <input type="text" class="form-control" name="top5_SERVES" value="<?php echo $top5_serves; ?>">
+                          </div>
+                          <div class="form-group my-4">
+                              <label for="menu_url">URL </label>
+                              <input type="text" class="form-control" name="top5_URL" value="<?php echo $top5_url; ?>">
                           </div>
                           <div class="form-group">
-                              <input type="hidden" name="top5_id" value="<?php echo $top5_id;?>">
+                              <input type="hidden" name="top5_id" value="<?php echo $top5_id; ?>">
+                              <input type="hidden" name="top5_image" value="<?php echo $top5_image; ?>">
                               <input type="submit" class="btn btn-primary" name="edit_top5" value="Edit">
                           </div>
                       </form>
@@ -75,14 +92,44 @@
 
     if(isset($_POST['edit_top5']))
     {
-      print_r($_POST);
       $title=$_POST['top5_NAME'];
-      $image=$_POST['top5_IMAGE'];
+      $image=$_FILES['about_image']['tmp_name'];
+      $preptime=$_POST['top5_PREPTIME'];
+      $serves=$_POST['top5_SERVES'];
+      $url=$_POST['top5_URL'];
       $top5id=$_POST['top5_id'];
-      //top5Edit($title,$image,$top5id);
+      $top5_image=$_POST['top5_image'];
+      if(strlen($image)>0)
+      {
+        $post_images = $fileimage1;
+        copy($post_images, $image_url.'/'. $_FILES['about_image1']['name']);
+        $post_image.="{$image_url}/{$_FILES['about_image1']['name']}";
+        $post_image.=",";
+      }
+      top5Edit($title,$image,$preptime,$serves,$url,$top5id,$top5_image);
     }
          ?>
+         <select id="category" onchange="geturl();" class="form-control col-4 ml-4" name="">
+           <?php
 
+           $categorylist=getDB('categories');
+           foreach ($categorylist as $key => $value) {
+             $category_name=$value['category_NAME'];
+             $category_url=$value['category_URL'];
+             echo "<option value='{$category_url}'>
+             {$category_name}
+             </option>";
+           }
+
+            ?>
+           <option value=""></option>
+         </select>
+         <label class="my-4 ml-4" id="print"></label>
+         <script type="text/javascript">
+          function geturl(){
+            document.getElementById('print').innerHTML=document.getElementById('category').value;
+          }
+         </script>
       </div>
         <?php require "includes/footer.php"; ?>
     </div>

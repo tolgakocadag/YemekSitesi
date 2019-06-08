@@ -1,7 +1,26 @@
+<?php
+
+$ip=GetIP();
+if($_SESSION[$ip]!=$recid)
+{
+  $_SESSION[$ip]=$recid;
+  hitplus($recid);
+}
+
+ ?>
 <!DOCTYPE html>
 <html lang="tr">
-
 <head>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86060213-4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-86060213-4');
+  </script>
 
 <!-- Basic Page Needs
 ================================================== -->
@@ -42,3 +61,8 @@ foreach ($sql_list as $key => $value) {
 <![endif]-->
 
 </head>
+
+<body>
+
+<!-- Wrapper -->
+<div id="wrapper">

@@ -16,6 +16,26 @@
         <?php require "includes/topbar.php"; ?>
 
       <?php
+        if(isset($_GET['deleteid'])&&isset($_GET['editid']))
+        {
+          $getList=getDBid($_GET['editid']);
+          foreach ($getList as $key => $value) {
+            $image=$value['recides_IMAGE'];
+          }
+          $image=explode(",",$image);
+          $deleteimage="";
+          foreach ($image as $key => $value) {
+            if($_GET['deleteid']!=$key)
+            {
+              $deleteimage.=$image[$key].',';
+            }
+          }
+          for ($i=0; $i <5 ; $i++) {
+            $deleteimage=rtrim($deleteimage,",");
+          }
+          RecideEditdeleteimage($deleteimage,$_GET['editid']);
+        }
+
         if(isset($_GET['editid']))
         {
           $recideid=$_GET['editid'];
@@ -92,7 +112,7 @@
             <?php
                 foreach ($imageexplode as $key => $value) {
                   $nameexplode=explode("/",$imageexplode[$key]);
-                  echo "<img src='{$imageexplode[$key]}' style='width:100px;height:100px' /> {$nameexplode[count($nameexplode)-1]} <button class='btn btn-danger'>Sil</button>&emsp;";
+                  echo "<img src='{$imageexplode[$key]}' style='width:100px;height:100px' /> {$nameexplode[count($nameexplode)-1]} <a href='/YemekSitesi/admin/recides_edit.php?editid={$_GET['editid']}&deleteid={$key}' class='btn btn-danger'>Sil</a>&emsp;";
                 }
              ?>
             <hr />
@@ -189,7 +209,7 @@
         $description=$_POST['description'];
         $tags=$_POST['tags'];
         $url=$_POST['categoryurl'];
-        RecideEdit($title,$ingredients,$directions,$explanation,$cooking,$preptime,$serves,$image,$categories,$frontexplanation,$description,$tags,$url,$recidesurl,$_GET['editid']);
+        RecideEdit($title,$ingredients,$directions,$explanation,$cooking,$preptime,$serves,$image,$categories,$frontexplanation,$description,$tags,$url,$recidesurl,$_GET['editid'],$fileimage1,$fileimage2,$fileimage3,$fileimage4);
       }
        ?>
 

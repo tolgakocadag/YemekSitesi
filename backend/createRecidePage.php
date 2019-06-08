@@ -1,14 +1,13 @@
 <?php
 //Yeni tarif sayfası oluşturan fonksiyon
 function createPage($fileurl){
-  $text="";
   $mark="'";
-  $text.='
-  <?php
+  $text='<?php session_start();ob_start();
    require "../../../backend/database/dbfunctions.php";
    require "../../../backend/generalfunctions.php";
     $'.'allrecide=getDBURL("'.$fileurl.'");
     foreach ($'.'allrecide as $'.'key => $'.'value) {
+      $'.'recid=$'.'value["recides_ID"];
       $'.'title=$'.'value["recides_TITLE"];
       $'.'serves=$'.'value["recides_SERVES"];
       $'.'preptime=$'.'value["recides_PREPTIME"];
@@ -21,13 +20,12 @@ function createPage($fileurl){
       $'.'categoryurl=$'.'value["category_ID"];
       $'.'description=$'.'value["recides_DESCRIPTION"];
       $'.'tags=$'.'value["recides_TAGS"];
+      $'.'hits=$'.'value["recides_HIT"];
+      $'.'empty=$'.'value["recides_EMPTY"];
     }
   ?>
   <?php require "../../../includes/singlePage/head.php"; ?>.
-  <body>
 
-  <!-- Wrapper -->
-  <div id="wrapper">
 
 
   <!-- Header
@@ -52,13 +50,12 @@ function createPage($fileurl){
   		================================================== -->
   		<?php require "../../../includes/singlePage/comments.php"; ?>
 
-  	</div>
-  	</div>
+
 
 
   <!-- Sidebar
   ================================================== -->
-  <div class="four columns">
+
 
   	<!-- Search Form -->
   	<?php require "../../../includes/singlePage/search.php"; ?>
@@ -78,15 +75,7 @@ function createPage($fileurl){
     <!-- Ads Post -->
     <?php require "../../../includes/singlePage/adskutu/ads1.php"; ?>
 
-  </div>
 
-
-  </div>
-  <!-- Container / End -->
-
-
-  </div>
-  <!-- Wrapper / End -->
 
 
   <!-- Footer
@@ -94,19 +83,13 @@ function createPage($fileurl){
   <?php require "../../../includes/singlePage/footer.php"; ?>
   <!-- Footer Bottom / End -->
 
-  <!-- Back To Top Button -->
-  <div id="backtotop"><a href="#"></a></div>
+
 
 
 
   <!-- Java Script
   ================================================== -->
   <?php require "../../../includes/singlePage/foot.php"; ?>
-
-
-  </body>
-
-  </html>
 
   ';
   return $text;

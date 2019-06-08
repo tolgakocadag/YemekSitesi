@@ -4,7 +4,7 @@
 	<!-- Container -->
 	<div class="container">
 
-		<div class="eight columns">© Copyright 2014 by <a href="#">Chow</a>. All Rights Reserved.</div>
+		<div class="eight columns"><?php echo $copyrighttext; ?></div>
 
 	</div>
 	<!-- Container / End -->
@@ -31,3 +31,9 @@
 <script src="../../../scripts/jquery.magnific-popup.min.js"></script>
 <script src="../../../scripts/jquery.pricefilter.js"></script>
 <script src="../../../scripts/custom.js"></script>
+<script id="dsq-count-scr" src="//mukemmel-tarifler.disqus.com/count.js" async></script>
+
+
+  </body>
+
+  </html>

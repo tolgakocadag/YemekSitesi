@@ -16,7 +16,7 @@
 
           <!-- Thumbnail -->
           <div class="thumbnail-holder">
-            <a href="/YemekSitesi/tarifler/'.$randcategory.'/'.$randurl.'.php">
+            <a href="/tarifler/'.$randcategory.'/'.$randurl.'">
               <img src="../../../images/recipeThumb-01a.jpg" alt=""/>
               <div class="hover-cover"></div>
               <div class="hover-icon">Tarife Git</div>

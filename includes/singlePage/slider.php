@@ -4,7 +4,7 @@
     $explodeimage=rtrim($image,",");
     $explodeimage=explode(",",$explodeimage);
     foreach ($explodeimage as $key => $value) {
-      echo '<img itemprop="image" class="rsImg" src="../../'.$explodeimage[$key].'" alt="" />';
+      echo '<img itemprop="image" class="rsImg" src="../../'.$explodeimage[$key].'" alt="'.$title.'" />';
     }
      ?>
 </div>

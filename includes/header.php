@@ -8,7 +8,7 @@
 	<!-- Logo / Mobile Menu -->
 	<div class="three columns">
 		<div id="logo">
-			<h1><a href="index.php"><img src="images/logo.png" alt="Chow" /></a></h1>
+			<h1><a href="/"><img style="height:55px;width:100%" src="images/logo/logo3.png" alt="Mükemmel Tarifler Logo" /></a></h1>
 		</div>
 	</div>
 
@@ -19,40 +19,24 @@
 
 	<nav id="navigation" class="menu nav-collapse">
 		<ul>
-			<li><a href="index-2.html" id="current">Home</a></li>
+			<li><a href="/" id="current">Anasayfa</a></li>
 
-			<li><a href="#">Demos</a>
+			<li><a href="#">Yemek Tarifleri</a>
 				<ul>
-					<li><a href="index-2.html">Grid Homepage</a></li>
-					<li><a href="index-3.html">List Homepage</a></li>
-					<li><a href="index-4.html">Boxed Version</a></li>
+				  <?php
+
+					$categorymenuList=getDBDESCcategory();
+					foreach ($categorymenuList as $key => $value) {
+						$categorymenuName=$value['category_NAME'];
+						$categorymenuUrl=$value['category_URL'];
+						echo '<li><a href="/tarifler/index?kategori='.$categorymenuUrl.'">'.$categorymenuName.'</a></li>';
+					}
+
+					 ?>
 				</ul>
 			</li>
 
-			<li><a href="#">Recipes</a>
-				<ul>
-					<li><a href="browse-recipes.html">Browse Recipes</a></li>
-					<li><a href="recipe-page-1.html">Recipe Page #1</a></li>
-					<li><a href="recipe-page-2.html">Recipe Page #2</a></li>
-				</ul>
-			</li>
-
-			<li><a href="#">Pages</a>
-				<ul>
-					<li><a href="shortcodes.html">Shortcodes</a></li>
-					<li><a href="typography.html">Typography</a></li>
-					<li><a href="contact.html">Contact</a></li>
-				</ul>
-			</li>
-
-			<li><a href="#">Shop</a>
-				<ul>
-					<li><a href="shop.html">Shop</a></li>
-					<li><a href="product-page.html">Product Page</a></li>
-				</ul>
-			</li>
-
-			<li><a href="submit-recipe.html">Submit Recipe</a></li>
+			<li><a href="/iletisim">İletişim</a></li>
 		</ul>
 	</nav>
 

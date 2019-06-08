@@ -14,6 +14,7 @@
       <div id="content">
 
         <?php require "includes/topbar.php"; ?>
+
       </div>
         <?php require "includes/footer.php"; ?>
     </div>

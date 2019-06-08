@@ -27,7 +27,7 @@
 							$categoryName=$value['category_NAME'];
 							$categoryCount=$value['category_COUNT'];
 							$categoryUrl=$value['category_URL'];
-							echo '<li><a href="/YemekSitesi/tarifler?kategori='.$categoryUrl.'">'.$categoryName.' <span>('.$categoryCount.')</span></a></li>';
+							echo '<li><a href="/tarifler/index?kategori='.$categoryUrl.'">'.$categoryName.' <span>('.$categoryCount.')</span></a></li>';
 						}
 			 ?>
 		</ul>
@@ -54,7 +54,7 @@
 				$popurl=$value['recides_URL'];
 				$popcategory=$value['category_ID'];
 	      echo '
-	      <a href="/YemekSitesi/tarifler/'.$popcategory.'/'.$popurl.'.php" class="featured-recipe">
+	      <a href="/tarifler/'.$popcategory.'/'.$popurl.'" class="featured-recipe">
 	        <img style="height:100px" src="'.$image.'" alt="">
 
 	        <div class="featured-recipe-content">

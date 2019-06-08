@@ -10,7 +10,7 @@
             $categoryName=$value['category_NAME'];
             $categoryCount=$value['category_COUNT'];
             $categoryUrl=$value['category_URL'];
-            echo '<li><a href="/YemekSitesi/tarifler?kategori='.$categoryUrl.'">'.$categoryName.' <span>('.$categoryCount.')</span></a></li>';
+            echo '<li><a href="/tarifler/index?kategori='.$categoryUrl.'">'.$categoryName.' <span>('.$categoryCount.')</span></a></li>';
           }
      ?>
   </ul>

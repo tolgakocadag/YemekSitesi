@@ -1,4 +1,4 @@
-<?php
+<?php session_start();ob_start();
  require "backend/database/dbfunctions.php";
  require "backend/generalfunctions.php";
   ?>
@@ -7,10 +7,21 @@
 <html lang="tr">
 <head>
 
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-86060213-4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-86060213-4');
+  </script>
+
+
 <!-- Basic Page Needs
 ================================================== -->
 <meta charset="utf-8">
-<title>YEMEK SİTESİ</title>
+<title>Mükemmel Tarifler</title>
 
 <!-- Mobile Specific Metas
 ================================================== -->
